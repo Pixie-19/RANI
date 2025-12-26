@@ -1,0 +1,7 @@
+{
+  "name": "Rani - Digital Literacy Platform",
+  "description": "A mobile-first, offline-friendly Progressive Web App to teach rural women in India digital skills, including UPI payments and government schemes.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
