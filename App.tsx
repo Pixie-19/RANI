@@ -381,10 +381,10 @@ const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) =>
   return (
     <div className="min-h-screen bg-white text-black">
       {/* Header */}
-      <div className="p-6 pb-2 sticky top-0 bg-white/90 backdrop-blur z-10 flex justify-between items-center">
+      <div className="sticky top-0 z-20 bg-white border-b-2 border-black px-6 py-4 flex justify-between items-center">
          <div>
-             <p className="text-sm font-medium text-gray-500">Welcome,</p>
-             <h1 className="text-xl font-bold">{user?.name}</h1>
+             <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-0.5">Welcome,</p>
+             <h1 className="text-2xl font-black">{user?.name}</h1>
          </div>
          <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white font-bold border-2 border-black shadow-neobrutalism-sm">
             {user?.name.charAt(0)}
