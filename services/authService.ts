@@ -1,3 +1,4 @@
+
 import { User, Language } from '../types';
 
 const STORAGE_KEY = 'rani_user';
@@ -13,6 +14,10 @@ export const login = async (phone: string, language: Language): Promise<User> =>
         if (parsed.phone === phone) {
            // Update language preference on login
            parsed.language = language;
+           // Backwards compatibility for existing local storage data without XP
+           if (typeof parsed.xp === 'undefined') parsed.xp = 0;
+           if (typeof parsed.streak === 'undefined') parsed.streak = 1;
+           
            localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
            resolve(parsed);
            return;
@@ -27,7 +32,9 @@ export const login = async (phone: string, language: Language): Promise<User> =>
         language,
         completedLessons: [],
         quizScores: {},
-        isAdmin: phone === '9999999999' // Mock admin phone
+        isAdmin: phone === '9999999999', // Mock admin phone
+        xp: 100, // Sign up bonus
+        streak: 1
       };
       
       localStorage.setItem(STORAGE_KEY, JSON.stringify(newUser));
@@ -38,7 +45,12 @@ export const login = async (phone: string, language: Language): Promise<User> =>
 
 export const getCurrentUser = (): User | null => {
   const stored = localStorage.getItem(STORAGE_KEY);
-  return stored ? JSON.parse(stored) : null;
+  if (!stored) return null;
+  const user = JSON.parse(stored);
+  // Ensure fields exist for old data
+  if (typeof user.xp === 'undefined') user.xp = 0;
+  if (typeof user.streak === 'undefined') user.streak = 1;
+  return user;
 };
 
 export const logout = () => {
@@ -54,9 +66,9 @@ export const getAllUsersMock = (): User[] => {
    // Generates fake data for admin dashboard + the current user
    const current = getCurrentUser();
    const mockUsers: User[] = [
-       { id: '1', phone: '12345', name: 'Rina', language: 'hi', completedLessons: ['l1_smartphone', 'l2_payments_intro'], quizScores: {'l1_smartphone': 1}, isAdmin: false },
-       { id: '2', phone: '67890', name: 'Sita', language: 'bn', completedLessons: ['l1_smartphone'], quizScores: {}, isAdmin: false },
-       { id: '3', phone: '11223', name: 'Gita', language: 'en', completedLessons: ['l1_smartphone', 'l2_payments_intro', 'l3_upi_sim'], quizScores: {'l3_upi_sim': 1}, isAdmin: false },
+       { id: '1', phone: '12345', name: 'Rina', language: 'hi', completedLessons: ['l1_smartphone', 'l2_payments_intro'], quizScores: {'l1_smartphone': 1}, isAdmin: false, xp: 150, streak: 3 },
+       { id: '2', phone: '67890', name: 'Sita', language: 'bn', completedLessons: ['l1_smartphone'], quizScores: {}, isAdmin: false, xp: 50, streak: 1 },
+       { id: '3', phone: '11223', name: 'Gita', language: 'en', completedLessons: ['l1_smartphone', 'l2_payments_intro', 'l3_upi_sim'], quizScores: {'l3_upi_sim': 1}, isAdmin: false, xp: 300, streak: 10 },
    ];
    if (current) mockUsers.push(current);
    return mockUsers;

@@ -8,7 +8,7 @@ import {
     Smartphone, IndianRupee, ScanLine, Wallet, Zap, Landmark, BookOpen, 
     Trophy, CreditCard, Settings, Home, User as UserIcon, Crown, ChevronLeft, 
     Search, Check, X, ArrowRight, Menu, LogOut, CheckCircle, GraduationCap,
-    Grid, Banknote, QrCode, Monitor
+    Grid, Banknote, QrCode, Monitor, Flame, Sun, MessageCircle, Lock
 } from 'lucide-react';
 
 // --- Context ---
@@ -19,7 +19,7 @@ interface AppContextType {
   setLanguage: (l: Language) => void;
   setLanguageSelected: (s: boolean) => void;
   t: (key: string) => string;
-  updateProgress: (lessonId: string, score?: number) => void;
+  updateProgress: (lessonId: string, score?: number, xpGained?: number) => void;
   logoutUser: () => void;
 }
 
@@ -35,6 +35,82 @@ const getYoutubeId = (url: string) => {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
   return (match && match[2].length === 11) ? match[2] : null;
+};
+
+// --- Sound Helper ---
+const playSound = (type: 'correct' | 'wrong') => {
+    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContext) return;
+    
+    try {
+        const ctx = new AudioContext();
+        
+        if (type === 'correct') {
+            // Cheerful, satisfying "Ding" (Layered Sine + Triangle with pitch bend)
+            const t = ctx.currentTime;
+            
+            // Layer 1: Main High Ping (Sine) - slides up slightly for energy
+            const osc1 = ctx.createOscillator();
+            const gain1 = ctx.createGain();
+            osc1.type = 'sine';
+            osc1.frequency.setValueAtTime(587.33, t); // D5
+            osc1.frequency.exponentialRampToValueAtTime(1174.66, t + 0.1); // D6 (Octave jump)
+            
+            gain1.gain.setValueAtTime(0, t);
+            gain1.gain.linearRampToValueAtTime(0.3, t + 0.02); // Fast attack
+            gain1.gain.exponentialRampToValueAtTime(0.001, t + 0.6); // Long resonant tail
+            
+            osc1.connect(gain1);
+            gain1.connect(ctx.destination);
+            osc1.start(t);
+            osc1.stop(t + 0.6);
+
+            // Layer 2: Warmth/Texture (Triangle) - slightly delayed for "sparkle"
+            const osc2 = ctx.createOscillator();
+            const gain2 = ctx.createGain();
+            osc2.type = 'triangle';
+            osc2.frequency.setValueAtTime(880, t + 0.05); // A5 (Major 5th relative to D)
+            
+            gain2.gain.setValueAtTime(0, t + 0.05);
+            gain2.gain.linearRampToValueAtTime(0.1, t + 0.07);
+            gain2.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
+
+            osc2.connect(gain2);
+            gain2.connect(ctx.destination);
+            osc2.start(t + 0.05);
+            osc2.stop(t + 0.6);
+
+        } else {
+            // "Thud" / Error Sound (Low Sawtooth with Lowpass Filter)
+            const t = ctx.currentTime;
+            
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            const filter = ctx.createBiquadFilter();
+
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(150, t); // Low pitch
+            osc.frequency.linearRampToValueAtTime(80, t + 0.3); // Pitch drops
+            
+            // Filter out the buzz to make it a dull thud
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(600, t);
+            filter.frequency.linearRampToValueAtTime(100, t + 0.3);
+
+            gain.gain.setValueAtTime(0, t);
+            gain.gain.linearRampToValueAtTime(0.2, t + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+            
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.start(t);
+            osc.stop(t + 0.3);
+        }
+    } catch (e) {
+        console.error("Audio playback failed", e);
+    }
 };
 
 // --- Shadcn-style Components ---
@@ -91,6 +167,10 @@ const Icon: React.FC<{ name: string; className?: string }> = ({ name, className 
         'landmark': Landmark,
         'indian-rupee': IndianRupee,
         'scan-line': ScanLine, 
+        'graduation-cap': GraduationCap,
+        'sun': Sun,
+        'message-circle': MessageCircle,
+        'user': UserIcon
     };
     const LucideIcon = icons[name] || Smartphone;
     return <LucideIcon className={className} />;
@@ -124,13 +204,20 @@ const BottomNav: React.FC<{ tab: 'home' | 'profile'; setTab: (t: 'home' | 'profi
 };
 
 // --- Custom Graphics for Black Bank look ---
-const CubeGraphic = () => (
-  <div className="relative w-48 h-48 mx-auto mb-8">
-     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-black rotate-45 border-2 border-white z-20 rounded-xl flex items-center justify-center">
-         <Smartphone className="text-white w-10 h-10 -rotate-45" />
+const AppLogo = () => (
+  <div className="relative w-48 h-48 mx-auto mb-8 flex flex-col items-center justify-center">
+     <div className="relative w-full h-full flex items-center justify-center">
+        {/* Background decorative squares */}
+        <div className="absolute w-28 h-28 bg-gray-200 border-2 border-black rounded-3xl rotate-12 translate-x-3"></div>
+        <div className="absolute w-28 h-28 bg-white border-2 border-black rounded-3xl -rotate-6 -translate-x-3"></div>
+        
+        {/* Main Logo Container - Matches Bottom Nav Style */}
+        <div className="relative w-28 h-28 bg-black rounded-3xl flex items-center justify-center border-4 border-white shadow-neobrutalism transform rotate-3 z-10">
+            <Crown className="text-white w-12 h-12" strokeWidth={2.5} />
+        </div>
      </div>
-     <div className="absolute top-12 left-8 w-24 h-24 bg-white border-2 border-black rotate-45 z-10 rounded-xl"></div>
-     <div className="absolute top-12 right-8 w-24 h-24 bg-white border-2 border-black rotate-45 z-10 rounded-xl"></div>
+     
+     {/* Pagination dots */}
      <div className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 flex gap-2">
         <div className="w-2 h-2 bg-black rounded-full"></div>
         <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
@@ -162,7 +249,7 @@ const LanguageSelectionPage: React.FC = () => {
        </div>
 
        <div className="flex-1 flex flex-col justify-center">
-          <CubeGraphic />
+          <AppLogo />
           
           <div className="text-center mb-10">
               <h2 className="text-xl font-bold mb-3">Choose Your Language</h2>
@@ -209,6 +296,27 @@ const LoginPage: React.FC = () => {
     setLoading(false);
   };
 
+  const handleGuestLogin = async () => {
+    setLoading(true);
+    // Create a guest user object directly
+    const guestUser: User = {
+        id: 'guest',
+        phone: '0000000000',
+        name: 'Guest User',
+        language: language,
+        completedLessons: [],
+        quizScores: {},
+        isAdmin: false,
+        xp: 0,
+        streak: 1
+    };
+    // Simulate slight delay
+    setTimeout(() => {
+        setUser(guestUser);
+        setLoading(false);
+    }, 600);
+  };
+
   return (
     <div className="min-h-screen flex flex-col p-8 bg-white text-black">
       <div className="flex justify-between items-center mt-2 mb-8">
@@ -251,7 +359,7 @@ const LoginPage: React.FC = () => {
             {loading ? '...' : t('login_btn')}
           </Button>
 
-          <Button onClick={() => {}} variant="ghost" className="text-xs mt-4">
+          <Button onClick={handleGuestLogin} variant="ghost" className="text-xs mt-4">
              Skip Introduction
           </Button>
         </div>
@@ -275,13 +383,6 @@ const ProfileView: React.FC = () => {
         }
     };
 
-    const chartData = [
-        { name: 'W1', score: 10 },
-        { name: 'W2', score: 25 },
-        { name: 'W3', score: 15 },
-        { name: 'W4', score: 30 },
-    ];
-
     return (
         <div className="p-6 space-y-6 pb-32 bg-white min-h-screen">
             {/* Header */}
@@ -295,31 +396,34 @@ const ProfileView: React.FC = () => {
                 </button>
             </div>
 
-            {/* Tabs */}
-            <div className="flex gap-2 p-1 border-2 border-black rounded-full mb-6">
-                {['Weekly', 'Monthly', 'Yearly'].map((tab, idx) => (
-                    <button key={tab} className={`flex-1 py-2 rounded-full text-xs font-bold transition-colors ${idx === 1 ? 'bg-black text-white' : 'text-gray-500 hover:text-black'}`}>
-                        {tab}
-                    </button>
-                ))}
+            {/* Overview Section */}
+            <div className="space-y-4">
+                 <h3 className="font-bold text-lg">Overview</h3>
+                 <div className="grid grid-cols-2 gap-4">
+                     <Card className="p-4 flex flex-col items-center justify-center gap-2">
+                         <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center border-2 border-orange-500">
+                            <Flame className="w-5 h-5 text-orange-600 fill-orange-600" />
+                         </div>
+                         <div className="text-center">
+                            <p className="text-2xl font-black">{user?.streak || 1}</p>
+                            <p className="text-xs font-bold text-gray-500 uppercase">Day Streak</p>
+                         </div>
+                     </Card>
+                     
+                     <Card className="p-4 flex flex-col items-center justify-center gap-2">
+                         <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center border-2 border-yellow-500">
+                            <Zap className="w-5 h-5 text-yellow-600 fill-yellow-600" />
+                         </div>
+                         <div className="text-center">
+                            <p className="text-2xl font-black">{user?.xp || 0}</p>
+                            <p className="text-xs font-bold text-gray-500 uppercase">Total XP</p>
+                         </div>
+                     </Card>
+                 </div>
             </div>
 
-            {/* Chart Card */}
-            <Card className="p-6 h-64 relative">
-                <div className="absolute top-4 right-4 bg-white border-2 border-black px-2 py-1 rounded-lg text-xs font-bold shadow-neobrutalism-sm">
-                    + {totalScore} pts
-                </div>
-                <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={chartData}>
-                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
-                        <XAxis dataKey="name" stroke="#000000" fontSize={10} tickLine={false} axisLine={false} />
-                         <Bar dataKey="score" fill="#ffffff" stroke="#000000" strokeWidth={2} radius={[4, 4, 4, 4]} barSize={20} />
-                    </BarChart>
-                </ResponsiveContainer>
-            </Card>
-
-            {/* Stats Grid - mimicking transaction list style */}
-            <div className="space-y-4">
+            {/* Stats Grid */}
+            <div className="space-y-4 pt-2">
                 <h3 className="font-bold text-lg">Your Stats</h3>
                 
                 <Card className="p-4 flex items-center justify-between">
@@ -368,15 +472,126 @@ const ProfileView: React.FC = () => {
     );
 };
 
-// 3. Dashboard (Home)
+// 3. New English Pathway Component
+const EnglishPathway: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) => {
+    const { user, t, language } = useApp();
+    const englishLessons = LESSONS.filter(l => l.id.startsWith('e_'));
+    
+    // Check progress
+    // A lesson is unlocked if it's the first one OR the previous one is completed
+    const isUnlocked = (index: number) => {
+        if (index === 0) return true;
+        const prevId = englishLessons[index - 1].id;
+        return user?.completedLessons.includes(prevId);
+    };
+
+    return (
+        <div className="min-h-screen bg-white text-black pb-32">
+             <div className="sticky top-0 z-20 bg-white border-b-2 border-black px-4 py-4 flex items-center gap-4">
+                 <button onClick={() => setRoute('home')} className="w-10 h-10 border-2 border-black rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors">
+                      <ChevronLeft className="w-5 h-5" />
+                 </button>
+                 <h1 className="text-xl font-black">{t('english_course')}</h1>
+             </div>
+
+             <div className="flex flex-col items-center py-12 relative max-w-xs mx-auto">
+                 {/* SVG Path Background */}
+                 <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-visible" xmlns="http://www.w3.org/2000/svg">
+                    {/* Draw dashed lines connecting nodes */}
+                    {englishLessons.map((_, i) => {
+                        if (i === englishLessons.length - 1) return null;
+                        // Calculate simplified coordinates for snake layout
+                        const x1 = i % 2 === 0 ? 50 : 270; // Center-ish
+                        const y1 = 40 + (i * 140);
+                        const x2 = (i + 1) % 2 === 0 ? 50 : 270;
+                        const y2 = 40 + ((i + 1) * 140);
+                        // Using a bezier curve for smooth path
+                        return (
+                            <path 
+                                key={i}
+                                d={`M ${160 + (i % 2 === 0 ? -40 : 40)} ${y1+50} C ${160 + (i % 2 === 0 ? -40 : 40)} ${y1 + 100}, ${160 + ((i + 1) % 2 === 0 ? -40 : 40)} ${y2 - 50}, ${160 + ((i + 1) % 2 === 0 ? -40 : 40)} ${y2}`} 
+                                stroke={isUnlocked(i+1) ? "#000" : "#d1d5db"} 
+                                strokeWidth="4" 
+                                strokeDasharray="10,10"
+                                fill="none"
+                            />
+                        );
+                    })}
+                 </svg>
+
+                 {englishLessons.map((lesson, index) => {
+                     const locked = !isUnlocked(index);
+                     const completed = user?.completedLessons.includes(lesson.id);
+                     const offset = index % 2 === 0 ? '-ml-20' : 'ml-20'; // Zigzag effect
+                     
+                     return (
+                         <div key={lesson.id} className={`relative z-10 mb-20 ${offset} flex flex-col items-center group`}>
+                             <button
+                                 onClick={() => !locked && setRoute(`lesson/${lesson.id}`)}
+                                 disabled={locked}
+                                 className={`
+                                    w-24 h-24 rounded-full flex items-center justify-center border-4 relative transition-all active:scale-95
+                                    ${locked 
+                                        ? 'bg-gray-200 border-gray-300 text-gray-400' 
+                                        : (completed 
+                                            ? 'bg-yellow-400 border-black text-black shadow-neobrutalism' 
+                                            : 'bg-black text-white border-black shadow-neobrutalism')
+                                    }
+                                 `}
+                             >
+                                 {locked ? <Lock className="w-8 h-8" /> : (completed ? <Check className="w-10 h-10" strokeWidth={3} /> : <Icon name={lesson.icon} className="w-8 h-8" />)}
+                                 
+                                 {/* Shine effect for active uncompleted */}
+                                 {!locked && !completed && (
+                                     <div className="absolute inset-0 bg-white opacity-20 rounded-full animate-pulse"></div>
+                                 )}
+                             </button>
+                             
+                             {/* Label */}
+                             <div className="absolute top-28 bg-white border-2 border-black px-3 py-1 rounded-lg shadow-[2px_2px_0_0_rgba(0,0,0,1)] whitespace-nowrap z-20">
+                                 <p className="text-xs font-bold uppercase tracking-wider">{t('unit')} {index + 1}</p>
+                                 <p className="font-bold text-sm">{lesson.title[language]}</p>
+                             </div>
+                         </div>
+                     )
+                 })}
+             </div>
+        </div>
+    );
+};
+
+// 4. Dashboard (Home)
 const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) => {
-  const { user, t, language } = useApp();
+  const { user, t, language, setUser } = useApp();
   const [tab, setTab] = useState<'home' | 'profile'>('home');
 
-  const nextLessonIndex = LESSONS.findIndex(l => !user?.completedLessons.includes(l.id));
-  // If all completed, stick to the last one or show a completion state
-  const activeLesson = nextLessonIndex !== -1 ? LESSONS[nextLessonIndex] : LESSONS[LESSONS.length - 1];
-  const allCompleted = nextLessonIndex === -1 && user?.completedLessons.length === LESSONS.length;
+  // English Entry
+  const showEnglishCard = language !== 'en';
+    
+  // Filter lessons - Exclude English path lessons from the main "Your Lessons" grid and Hero card
+  const digitalLiteracyLessons = LESSONS.filter(l => !l.id.startsWith('e_'));
+  
+  // Determine active lesson for Hero
+  let activeLesson = digitalLiteracyLessons.find(l => l.id === user?.lastActiveLessonId);
+  if (!activeLesson) {
+     const nextLessonIndex = digitalLiteracyLessons.findIndex(l => !user?.completedLessons.includes(l.id));
+     activeLesson = nextLessonIndex !== -1 ? digitalLiteracyLessons[nextLessonIndex] : digitalLiteracyLessons[digitalLiteracyLessons.length - 1];
+  }
+  
+  // Safety check
+  if (!activeLesson && digitalLiteracyLessons.length > 0) activeLesson = digitalLiteracyLessons[0];
+  
+  const allCompleted = user?.completedLessons.length === digitalLiteracyLessons.length && !user?.lastActiveLessonId;
+  const isCompleted = user?.completedLessons.includes(activeLesson?.id || '');
+
+  const handleLessonStart = (lessonId: string) => {
+    if (user) {
+        const updatedUser = { ...user, lastActiveLessonId: lessonId };
+        setUser(updatedUser);
+        saveProgress(updatedUser);
+    }
+    setRoute(`lesson/${lessonId}`);
+  };
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -386,9 +601,12 @@ const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) =>
              <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-0.5">Welcome,</p>
              <h1 className="text-2xl font-black">{user?.name}</h1>
          </div>
-         <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white font-bold border-2 border-black shadow-neobrutalism-sm">
+         <button 
+            onClick={() => setTab('profile')} 
+            className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white font-bold border-2 border-black shadow-neobrutalism-sm active:scale-95 transition-transform"
+         >
             {user?.name.charAt(0)}
-         </div>
+         </button>
       </div>
 
       {/* Content */}
@@ -398,6 +616,7 @@ const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) =>
       ) : (
           <>
             {/* Hero Card */}
+            {activeLesson && (
             <div className="relative w-full aspect-[1.35] bg-white border-2 border-black rounded-[2rem] p-7 flex flex-col justify-between overflow-hidden shadow-neobrutalism">
                 {/* Decorative Pattern lines */}
                 <div className="absolute right-[-20%] top-[-10%] w-[80%] h-[120%] rounded-full border-[1px] border-gray-200 opacity-60 pointer-events-none"></div>
@@ -406,7 +625,7 @@ const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) =>
                 {/* Top Row */}
                 <div className="flex justify-between items-start z-10">
                     <div className="w-14 h-11 bg-blue-50 border-2 border-black rounded-xl flex items-center justify-center">
-                         <Monitor className="w-6 h-6 text-blue-600 stroke-[2.5]" />
+                         <Icon name={activeLesson.icon} className="w-6 h-6 text-blue-600 stroke-[2.5]" />
                     </div>
                     <span className="font-black text-xl italic tracking-tighter text-black">RANI</span>
                 </div>
@@ -414,7 +633,7 @@ const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) =>
                 {/* Middle Content */}
                 <div className="z-10 mt-2">
                     <p className="text-[10px] font-bold tracking-[0.2em] text-gray-500 mb-2 uppercase">
-                        {allCompleted ? 'Completed' : 'Up Next'}
+                        {isCompleted ? 'Completed' : (allCompleted ? 'Completed' : 'Up Next')}
                     </p>
                     <h2 className="text-3xl font-black leading-tight text-black mb-4 line-clamp-2">
                         {activeLesson.title[language]}
@@ -436,22 +655,23 @@ const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) =>
                         <p className="font-bold text-black text-lg">{user?.name}</p>
                     </div>
                     <button 
-                         onClick={() => setRoute(`lesson/${activeLesson.id}`)}
+                         onClick={() => handleLessonStart(activeLesson!.id)}
                          className="bg-black text-white pl-6 pr-5 py-3 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-zinc-800 transition-transform active:scale-95 flex items-center gap-2 group border-2 border-black"
                     >
-                        {allCompleted ? 'REVIEW' : 'START'}
+                        {isCompleted ? 'REVIEW' : (allCompleted ? 'REVIEW' : 'START')}
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                 </div>
             </div>
+            )}
 
             {/* Action Grid */}
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-3 gap-4">
                 {[
-                    { icon: BookOpen, label: 'Lessons', route: '' },
-                    { icon: Trophy, label: 'Quiz', route: '' },
-                    { icon: CreditCard, label: 'Sim', route: '' },
-                    { icon: Settings, label: 'More', route: '' }
+                    { icon: BookOpen, label: t('nav_lessons'), route: '' },
+                    { icon: Trophy, label: t('quiz'), route: '' },
+                    // Sim removed
+                    { icon: Settings, label: t('nav_more'), route: '' }
                 ].map((item, i) => (
                     <div key={i} className="flex flex-col items-center gap-2 group">
                         <button className="w-14 h-14 bg-white border-2 border-black rounded-2xl flex items-center justify-center text-xl shadow-neobrutalism-sm group-hover:shadow-neobrutalism transition-all group-active:translate-x-[2px] group-active:translate-y-[2px] group-active:shadow-none">
@@ -462,26 +682,52 @@ const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) =>
                 ))}
             </div>
 
-            {/* Lessons Grid */}
+            {/* English Course Special Card (Path Entry) */}
+            {showEnglishCard && (
+                <div className="mt-4">
+                    <Card 
+                        onClick={() => setRoute('english-path')}
+                        className="p-5 flex items-center justify-between bg-black text-white cursor-pointer group relative overflow-hidden shadow-neobrutalism"
+                    >
+                        {/* Decorative background circle */}
+                        <div className="absolute -right-4 -top-4 w-24 h-24 bg-zinc-800 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
+
+                        <div className="flex items-center gap-4 relative z-10">
+                            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-black border-2 border-white group-hover:rotate-12 transition-transform">
+                                <GraduationCap className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-lg leading-tight">{t('english_course')}</h4>
+                                <p className="text-zinc-400 text-xs font-bold mt-1">{t('english_desc')}</p>
+                            </div>
+                        </div>
+                        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black relative z-10 group-hover:translate-x-1 transition-transform">
+                            <ArrowRight className="w-5 h-5" />
+                        </div>
+                    </Card>
+                </div>
+            )}
+
+            {/* Lessons Grid (Excluding English) */}
             <div>
                 <h3 className="text-lg font-bold mb-4">Your Lessons</h3>
                 <div className="grid grid-cols-2 gap-4">
-                    {LESSONS.map((lesson, index) => {
-                        const isCompleted = user?.completedLessons.includes(lesson.id);
+                    {digitalLiteracyLessons.map((lesson, index) => {
+                        const isLessonCompleted = user?.completedLessons.includes(lesson.id);
                         return (
                             <Card 
                                 key={lesson.id}
-                                onClick={() => setRoute(`lesson/${lesson.id}`)}
+                                onClick={() => handleLessonStart(lesson.id)}
                                 className={`
                                     p-5 aspect-square flex flex-col justify-between cursor-pointer relative bg-white group
-                                    ${isCompleted ? 'bg-gray-50' : ''}
+                                    ${isLessonCompleted ? 'bg-gray-50' : ''}
                                 `}
                             >
                                 <div className="flex justify-between items-start">
                                     <div className="w-10 h-10 border-2 border-black rounded-xl flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
                                         <Icon name={lesson.icon} className="w-5 h-5" />
                                     </div>
-                                    {isCompleted && (
+                                    {isLessonCompleted && (
                                         <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center text-white">
                                             <Check className="w-3 h-3" />
                                         </div>
@@ -510,9 +756,9 @@ const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) =>
   );
 };
 
-// 4. Simulations 
-// Keeping simulations mostly as is but wrapping in the new aesthetic container
+// ... (Simulations code remains same)
 const SimulationView: React.FC<{ type: string; onComplete: () => void }> = ({ type, onComplete }) => {
+    // ... (Simulation code remains the same)
   const { t } = useApp();
   const [step, setStep] = useState(type === 'maps' ? 0 : -1); 
   const [amount, setAmount] = useState('');
@@ -669,21 +915,41 @@ const SimulationView: React.FC<{ type: string; onComplete: () => void }> = ({ ty
   );
 };
 
-// 5. Lesson Player
+// ... (LessonPlayer code mostly remains same, just handling close)
 const LessonPlayer: React.FC<{ lessonId: string; close: () => void }> = ({ lessonId, close }) => {
+    // ... (LessonPlayer code remains the same)
   const { t, language, updateProgress } = useApp();
   const lesson = LESSONS.find(l => l.id === lessonId);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [quizMode, setQuizMode] = useState(false);
   const [quizIndex, setQuizIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [sessionXP, setSessionXP] = useState(0); // XP gained in this session
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
+
+  // Duolingo Practice State
+  const [practiceSelectedIndices, setPracticeSelectedIndices] = useState<number[]>([]);
+  const [practiceBank, setPracticeBank] = useState<{word: string, originalIndex: number}[]>([]);
+  const [practiceCheckStatus, setPracticeCheckStatus] = useState<'idle' | 'correct' | 'wrong'>('idle');
 
   useEffect(() => { 
     setSelectedOption(null); 
     setShowFeedback(false); 
-  }, [currentStepIndex, quizIndex]);
+    
+    // Init practice mode if needed
+    if (lesson && lesson.steps[currentStepIndex].type === 'language_practice' && lesson.steps[currentStepIndex].practice) {
+        setPracticeSelectedIndices([]);
+        setPracticeCheckStatus('idle');
+        const words = lesson.steps[currentStepIndex].practice!.wordBank;
+        // Create bank items with original indices to handle duplicates if needed (though simple strings here)
+        // Shuffle
+        const bankItems = words.map((w, i) => ({ word: w, originalIndex: i }));
+        // Simple shuffle
+        setPracticeBank(bankItems.sort(() => Math.random() - 0.5));
+    }
+
+  }, [currentStepIndex, quizIndex, lesson]);
 
   if (!lesson) return null;
 
@@ -701,12 +967,53 @@ const LessonPlayer: React.FC<{ lessonId: string; close: () => void }> = ({ lesso
     if (showFeedback) return;
     setSelectedOption(optionIndex);
     setShowFeedback(true);
-    if (optionIndex === lesson.quiz[quizIndex].correctIndex) setScore(s => s + 1);
+    
+    if (optionIndex === lesson.quiz[quizIndex].correctIndex) {
+        setScore(s => s + 1);
+        setSessionXP(xp => xp + 10); // 10 XP per correct answer
+        playSound('correct');
+    } else {
+        playSound('wrong');
+    }
   };
 
   const handleNextQuestion = () => {
-     if (quizIndex < lesson.quiz.length - 1) setQuizIndex(prev => prev + 1);
-     else updateProgress(lessonId, score);
+     if (quizIndex < lesson.quiz.length - 1) {
+         setQuizIndex(prev => prev + 1);
+     } else {
+         // Finished quiz
+         const totalXP = sessionXP + 50; // 50 XP bonus for completing
+         updateProgress(lessonId, score, totalXP);
+     }
+  };
+
+  // Practice Handlers
+  const handleAddToSentence = (item: {word: string, originalIndex: number}) => {
+      if (practiceCheckStatus === 'correct') return;
+      setPracticeSelectedIndices(prev => [...prev, item.originalIndex]);
+      setPracticeCheckStatus('idle'); // Reset error state on change
+  };
+
+  const handleRemoveFromSentence = (originalIndex: number) => {
+      if (practiceCheckStatus === 'correct') return;
+      setPracticeSelectedIndices(prev => prev.filter(i => i !== originalIndex));
+      setPracticeCheckStatus('idle');
+  };
+
+  const checkPracticeAnswer = () => {
+      if (!currentStep.practice) return;
+      const constructedSentence = practiceSelectedIndices
+          .map(idx => currentStep.practice!.wordBank[idx])
+          .join(' ');
+      
+      if (constructedSentence === currentStep.practice.correctSentence) {
+          setPracticeCheckStatus('correct');
+          playSound('correct');
+          setSessionXP(prev => prev + 15); // More XP for translation
+      } else {
+          setPracticeCheckStatus('wrong');
+          playSound('wrong');
+      }
   };
 
   if (quizMode && quizIndex >= lesson.quiz.length) {
@@ -716,7 +1023,11 @@ const LessonPlayer: React.FC<{ lessonId: string; close: () => void }> = ({ lesso
                  <Trophy className="w-16 h-16" />
              </div>
              <h2 className="text-4xl font-extrabold mb-2">{t('congrats')}</h2>
-             <p className="text-xl text-gray-500 mb-10 font-medium">{t('score')}: {score} / {lesson.quiz.length}</p>
+             <p className="text-xl text-gray-500 mb-2 font-medium">{t('score')}: {score} / {lesson.quiz.length}</p>
+             <div className="inline-flex items-center gap-2 bg-yellow-100 px-4 py-2 rounded-full border-2 border-yellow-500 mb-10">
+                 <Zap className="w-4 h-4 text-yellow-600 fill-yellow-600" />
+                 <span className="font-black text-yellow-800">+{sessionXP + 50} XP Earned</span>
+             </div>
              <Button onClick={close} variant="black" className="max-w-xs mx-auto">{t('finish')}</Button>
          </div>
      )
@@ -783,6 +1094,118 @@ const LessonPlayer: React.FC<{ lessonId: string; close: () => void }> = ({ lesso
                </div>
           </div>
       )
+  }
+
+  // Language Practice (Duolingo Style)
+  if (currentStep.type === 'language_practice' && currentStep.practice) {
+      return (
+        <div className="fixed inset-0 bg-white z-50 flex flex-col text-black">
+           <div className="h-2 bg-gray-100">
+               <div className="h-full bg-green-500 transition-all duration-300 ease-out" style={{ width: `${((currentStepIndex + 1) / lesson.steps.length) * 100}%` }} />
+           </div>
+           
+           <div className="p-4 flex justify-between items-center">
+               <span className="font-bold text-gray-400 text-sm uppercase">Practice</span>
+               <button onClick={close} className="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center">
+                   <X className="w-6 h-6 text-gray-400" />
+               </button>
+           </div>
+
+           <div className="flex-1 flex flex-col px-6 max-w-lg mx-auto w-full">
+               <h2 className="text-2xl font-bold mb-6">{t('translate_sentence')}</h2>
+               
+               {/* Source Sentence Bubble */}
+               <div className="flex items-start gap-3 mb-8">
+                   <div className="w-24 h-24 relative shrink-0">
+                        {/* Placeholder for Character */}
+                        <div className="w-full h-full bg-purple-100 rounded-2xl border-2 border-purple-300 flex items-center justify-center">
+                             <UserIcon className="w-12 h-12 text-purple-400" />
+                        </div>
+                   </div>
+                   <div className="bg-white border-2 border-gray-200 p-4 rounded-2xl rounded-tl-none mt-4 shadow-sm relative">
+                        {/* Little triangle */}
+                        <div className="absolute top-0 -left-2 w-4 h-4 bg-white border-l-2 border-b-2 border-gray-200 transform rotate-45"></div>
+                        <p className="text-lg font-medium">{currentStep.practice.sourceText[language]}</p>
+                   </div>
+               </div>
+
+               {/* Target Sentence Area */}
+               <div className="min-h-[140px] border-t-2 border-b-2 border-gray-100 py-6 mb-4 flex flex-wrap gap-2 content-start">
+                   {practiceSelectedIndices.map((idx, i) => {
+                       const word = currentStep.practice!.wordBank[idx];
+                       return (
+                           <button 
+                               key={`${idx}-${i}`} 
+                               onClick={() => handleRemoveFromSentence(idx)}
+                               className="px-4 py-2 bg-white border-2 border-gray-300 rounded-xl shadow-[0_2px_0_0_rgba(209,213,219,1)] text-lg font-medium active:translate-y-[2px] active:shadow-none hover:bg-gray-50"
+                           >
+                               {word}
+                           </button>
+                       );
+                   })}
+               </div>
+
+               {/* Word Bank */}
+               <div className="flex flex-wrap gap-2 justify-center">
+                   {practiceBank.map((item, i) => {
+                       const isSelected = practiceSelectedIndices.includes(item.originalIndex);
+                       if (isSelected) {
+                           return (
+                               <div key={i} className="px-4 py-2 bg-gray-200 rounded-xl text-lg font-medium text-transparent select-none h-[46px] w-[60px] opacity-50">
+                                   {item.word}
+                               </div>
+                           )
+                       }
+                       return (
+                           <button 
+                               key={i}
+                               onClick={() => handleAddToSentence(item)}
+                               className="px-4 py-2 bg-white border-2 border-gray-300 rounded-xl shadow-[0_2px_0_0_rgba(209,213,219,1)] text-lg font-medium active:translate-y-[2px] active:shadow-none hover:bg-gray-50"
+                           >
+                               {item.word}
+                           </button>
+                       );
+                   })}
+               </div>
+           </div>
+
+           {/* Footer Action */}
+           <div className={`p-6 border-t-2 ${practiceCheckStatus === 'correct' ? 'bg-[#d7ffb8] border-transparent' : (practiceCheckStatus === 'wrong' ? 'bg-[#ffdfe0] border-transparent' : 'bg-white border-gray-200')}`}>
+               <div className="max-w-lg mx-auto w-full">
+                    {practiceCheckStatus === 'correct' && (
+                        <div className="mb-4 flex items-center gap-2 text-green-700 font-bold text-xl animate-bounce">
+                            <CheckCircle className="w-8 h-8" /> {t('correct_msg')}
+                        </div>
+                    )}
+                    {practiceCheckStatus === 'wrong' && (
+                        <div className="mb-4 text-red-700">
+                             <div className="font-bold text-xl flex items-center gap-2 mb-1"><X className="w-6 h-6" /> Incorrect</div>
+                             <div className="text-sm font-medium ml-8">{t('wrong_msg')} {currentStep.practice.correctSentence}</div>
+                        </div>
+                    )}
+
+                    {practiceCheckStatus === 'idle' ? (
+                        <Button 
+                            onClick={checkPracticeAnswer} 
+                            variant="black" 
+                            className="bg-[#58cc02] border-[#58cc02] shadow-[0_4px_0_0_#46a302] hover:bg-[#46a302] active:shadow-none active:translate-y-[4px]"
+                            disabled={practiceSelectedIndices.length === 0}
+                        >
+                            {t('check')}
+                        </Button>
+                    ) : (
+                        <Button 
+                            onClick={nextStep} 
+                            variant={practiceCheckStatus === 'correct' ? 'black' : 'black'}
+                            className={`${practiceCheckStatus === 'correct' ? 'bg-[#58cc02] border-[#58cc02] shadow-[0_4px_0_0_#46a302]' : 'bg-[#ff4b4b] border-[#ff4b4b] shadow-[0_4px_0_0_#ea2b2b]'} text-white active:shadow-none active:translate-y-[4px]`}
+                        >
+                            {t('continue')}
+                        </Button>
+                    )}
+               </div>
+           </div>
+        </div>
+      );
   }
 
   const currentVideoUrl = currentStep.video ? (typeof currentStep.video === 'string' ? currentStep.video : currentStep.video[language]) : undefined;
@@ -948,14 +1371,25 @@ const App: React.FC = () => {
 
   const t = (key: string) => TRANSLATIONS[language][key] || key;
 
-  const updateProgress = (lessonId: string, finalScore?: number) => {
+  const updateProgress = (lessonId: string, finalScore?: number, xpGained?: number) => {
       if (!user) return;
       const updatedUser = { ...user };
       if (!updatedUser.completedLessons.includes(lessonId)) updatedUser.completedLessons.push(lessonId);
       if (finalScore !== undefined) updatedUser.quizScores[lessonId] = finalScore;
+      
+      // Update XP
+      if (xpGained) {
+          updatedUser.xp = (updatedUser.xp || 0) + xpGained;
+      }
+      
       setUser(updatedUser);
       saveProgress(updatedUser);
-      setCurrentRoute('home');
+      // Stay on route if it's english path, else go home
+      if (lessonId.startsWith('e_')) {
+          setCurrentRoute('english-path');
+      } else {
+          setCurrentRoute('home');
+      }
   };
 
   const logoutUser = () => { setUser(null); setLanguageSelected(false); logout(); }
@@ -968,9 +1402,11 @@ const App: React.FC = () => {
       else content = <LoginPage />;
   } else if (currentRoute === 'home') content = <Dashboard setRoute={setCurrentRoute} />;
   else if (currentRoute === 'admin') content = <AdminDashboard goBack={() => setCurrentRoute('home')} />;
+  else if (currentRoute === 'english-path') content = <EnglishPathway setRoute={setCurrentRoute} />;
   else if (currentRoute.startsWith('lesson/')) {
       const lessonId = currentRoute.split('/')[1];
-      content = <LessonPlayer lessonId={lessonId} close={() => setCurrentRoute('home')} />;
+      const isEnglishLesson = lessonId.startsWith('e_');
+      content = <LessonPlayer lessonId={lessonId} close={() => isEnglishLesson ? setCurrentRoute('english-path') : setCurrentRoute('home')} />;
   }
 
   return (

@@ -8,17 +8,25 @@ export interface User {
   language: Language;
   completedLessons: string[]; // IDs of completed lessons
   quizScores: Record<string, number>; // LessonID -> Score
+  lastActiveLessonId?: string; // ID of the last lesson opened/interacted with
   isAdmin?: boolean;
+  xp: number; // Experience points
+  streak: number; // Day streak
 }
 
 export interface Step {
   id: string;
-  type: 'info' | 'simulation' | 'quiz_intro';
+  type: 'info' | 'simulation' | 'quiz_intro' | 'language_practice';
   title: Record<Language, string>;
   description: Record<Language, string>;
   image?: string; // URL to illustration
   video?: string | Record<Language, string>; // URL to video clip (string or localized)
   simulationType?: 'upi_pay' | 'paytm' | 'gpay' | 'maps'; // For interactive steps
+  practice?: {
+      sourceText: Record<Language, string>;
+      correctSentence: string; 
+      wordBank: string[]; 
+  };
 }
 
 export interface QuizQuestion {

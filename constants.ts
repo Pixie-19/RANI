@@ -33,7 +33,19 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     correct_ans: "Correct!",
     wrong_ans: "Incorrect",
     next_question: "Next Question",
-    finish_quiz: "Finish Quiz"
+    finish_quiz: "Finish Quiz",
+    nav_lessons: "Lessons",
+    nav_sim: "Sim",
+    nav_more: "More",
+    translate_sentence: "Translate this sentence",
+    check: "Check",
+    correct_msg: "Excellent!",
+    wrong_msg: "Correct solution:",
+    english_course: "English Course",
+    english_desc: "Learn from scratch",
+    start_path: "Start Path",
+    unit: "Unit",
+    locked: "Locked"
   },
   hi: {
     welcome: "रानी में आपका स्वागत है",
@@ -66,7 +78,19 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     correct_ans: "सही!",
     wrong_ans: "गलत",
     next_question: "अगला प्रश्न",
-    finish_quiz: "क्विज़ समाप्त करें"
+    finish_quiz: "क्विज़ समाप्त करें",
+    nav_lessons: "पाठ",
+    nav_sim: "सिम",
+    nav_more: "अधिक",
+    translate_sentence: "इस वाक्य का अनुवाद करें",
+    check: "जाँच करें",
+    correct_msg: "बहुत बढ़िया!",
+    wrong_msg: "सही उत्तर:",
+    english_course: "अंग्रेजी कोर्स",
+    english_desc: "शुरुआत से सीखें",
+    start_path: "शुरू करें",
+    unit: "इकाई",
+    locked: "बंद है"
   },
   bn: {
     welcome: "রানীতে স্বাগতম",
@@ -99,11 +123,239 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     correct_ans: "সঠিক!",
     wrong_ans: "ভুল",
     next_question: "পরবর্তী প্রশ্ন",
-    finish_quiz: "কুইজ শেষ করুন"
+    finish_quiz: "কুইজ শেষ করুন",
+    nav_lessons: "पाठ",
+    nav_sim: "সিম",
+    nav_more: "আরও",
+    translate_sentence: "এই বাক্যটি অনুবাদ করুন",
+    check: "যাচাই করুন",
+    correct_msg: "চমৎকার!",
+    wrong_msg: "সঠিক উত্তর:",
+    english_course: "ইংরেজি কোর্স",
+    english_desc: "শুরু থেকে শিখুন",
+    start_path: "শুরু করুন",
+    unit: "ইউনিট",
+    locked: "বন্ধ"
   }
 };
 
 export const LESSONS: Lesson[] = [
+  // --- ENGLISH PATHWAY LESSONS ---
+  // Unit 1: A-E
+  {
+      id: "e_unit1_a_e",
+      title: { en: "Alphabets A-E", hi: "वर्णमाला A-E", bn: "বর্ণমালা A-E" },
+      description: { en: "Letters A, B, C, D, E", hi: "अक्षर A, B, C, D, E", bn: "অক্ষর A, B, C, D, E" },
+      icon: "graduation-cap",
+      steps: [
+          { id: "s_a", type: "info", title: {en:"A is for Apple", hi:"A से Apple", bn:"A তে Apple"}, description: {en:"Apple", hi:"सेब", bn:"আপেল"}, image: "https://loremflickr.com/400/300/apple" },
+          { id: "s_b", type: "info", title: {en:"B is for Ball", hi:"B से Ball", bn:"B তে Ball"}, description: {en:"Ball", hi:"गेंद", bn:"বল"}, image: "https://loremflickr.com/400/300/ball" },
+          { id: "s_c", type: "info", title: {en:"C is for Cat", hi:"C से Cat", bn:"C তে Cat"}, description: {en:"Cat", hi:"बिल्ली", bn:"বিড়াল"}, image: "https://loremflickr.com/400/300/cat" },
+          { id: "s_d", type: "info", title: {en:"D is for Dog", hi:"D से Dog", bn:"D তে Dog"}, description: {en:"Dog", hi:"कुत्ता", bn:"কুকুর"}, image: "https://loremflickr.com/400/300/dog" },
+          { id: "s_e", type: "info", title: {en:"E is for Elephant", hi:"E से Elephant", bn:"E তে Elephant"}, description: {en:"Elephant", hi:"हाथी", bn:"হাতি"}, image: "https://loremflickr.com/400/300/elephant" },
+          { id: "p_1", type: "language_practice", title: {en:"Practice", hi:"अभ्यास", bn:"অনুশীলন"}, description: {en:"Select 'Apple'", hi:"'Apple' चुनें", bn:"'Apple' নির্বাচন করুন"}, practice: { sourceText: {en:"Apple", hi:"सेब", bn:"আপেল"}, correctSentence: "Apple", wordBank: ["Apple", "Dog", "Cat"] } }
+      ],
+      quiz: [
+          { id: "q1", question: {en:"What comes after A?", hi:"A के बाद क्या आता है?", bn:"A এর পরে কি আসে?"}, options: [{en:"B", hi:"B", bn:"B"}, {en:"D", hi:"D", bn:"D"}], correctIndex: 0, explanation: {en:"B comes after A.", hi:"A के बाद B आता है।", bn:"A এর পরে B আসে।"} }
+      ]
+  },
+  // Unit 2: F-J
+  {
+      id: "e_unit2_f_j",
+      title: { en: "Alphabets F-J", hi: "वर्णमाला F-J", bn: "বর্ণমালা F-J" },
+      description: { en: "Letters F, G, H, I, J", hi: "अक्षर F, G, H, I, J", bn: "অক্ষর F, G, H, I, J" },
+      icon: "graduation-cap",
+      steps: [
+          { id: "s_f", type: "info", title: {en:"F is for Fish", hi:"F से Fish", bn:"F তে Fish"}, description: {en:"Fish", hi:"मछली", bn:"মাছ"}, image: "https://loremflickr.com/400/300/fish" },
+          { id: "s_g", type: "info", title: {en:"G is for Goat", hi:"G से Goat", bn:"G তে Goat"}, description: {en:"Goat", hi:"बकरी", bn:"ছাগল"}, image: "https://loremflickr.com/400/300/goat" },
+          { id: "s_h", type: "info", title: {en:"H is for Hat", hi:"H से Hat", bn:"H তে Hat"}, description: {en:"Hat", hi:"टोपी", bn:"টুপি"}, image: "https://loremflickr.com/400/300/hat" },
+          { id: "s_i", type: "info", title: {en:"I is for Ice Cream", hi:"I से Ice Cream", bn:"I তে Ice Cream"}, description: {en:"Ice Cream", hi:"आइसक्रीम", bn:"আইসক্রিম"}, image: "https://loremflickr.com/400/300/icecream" },
+          { id: "s_j", type: "info", title: {en:"J is for Jug", hi:"J से Jug", bn:"J তে Jug"}, description: {en:"Jug", hi:"जग", bn:"জগ"}, image: "https://loremflickr.com/400/300/jug" },
+      ],
+      quiz: [
+          { id: "q1", question: {en:"F is for...", hi:"F से...", bn:"F তে..."}, options: [{en:"Fish", hi:"Fish", bn:"Fish"}, {en:"Apple", hi:"Apple", bn:"Apple"}], correctIndex: 0, explanation: {en:"F is for Fish.", hi:"F से Fish होता है।", bn:"F তে Fish হয়।"} }
+      ]
+  },
+  // Unit 3: K-O
+  {
+      id: "e_unit3_k_o",
+      title: { en: "Alphabets K-O", hi: "वर्णमाला K-O", bn: "বর্ণমালা K-O" },
+      description: { en: "Letters K, L, M, N, O", hi: "अक्षर K, L, M, N, O", bn: "অক্ষর K, L, M, N, O" },
+      icon: "graduation-cap",
+      steps: [
+          { id: "s_k", type: "info", title: {en:"K is for Kite", hi:"K से Kite", bn:"K তে Kite"}, description: {en:"Kite", hi:"पतंग", bn:"ঘুড়ি"}, image: "https://loremflickr.com/400/300/kite" },
+          { id: "s_l", type: "info", title: {en:"L is for Lion", hi:"L से Lion", bn:"L তে Lion"}, description: {en:"Lion", hi:"शेर", bn:"সিংহ"}, image: "https://loremflickr.com/400/300/lion" },
+          { id: "s_m", type: "info", title: {en:"M is for Mango", hi:"M से Mango", bn:"M তে Mango"}, description: {en:"Mango", hi:"आम", bn:"আম"}, image: "https://loremflickr.com/400/300/mango" },
+          { id: "s_n", type: "info", title: {en:"N is for Nest", hi:"N से Nest", bn:"N তে Nest"}, description: {en:"Nest", hi:"घोंसला", bn:"পাখির বাসা"}, image: "https://loremflickr.com/400/300/nest" },
+          { id: "s_o", type: "info", title: {en:"O is for Orange", hi:"O से Orange", bn:"O তে Orange"}, description: {en:"Orange", hi:"संतरा", bn:"কমলা"}, image: "https://loremflickr.com/400/300/orange" },
+      ],
+      quiz: [
+          { id: "q1", question: {en:"M is for...", hi:"M से...", bn:"M তে..."}, options: [{en:"Mango", hi:"Mango", bn:"Mango"}, {en:"Lion", hi:"Lion", bn:"Lion"}], correctIndex: 0, explanation: {en:"M is for Mango.", hi:"M से Mango होता है।", bn:"M তে Mango হয়।"} }
+      ]
+  },
+  // Unit 4: P-T
+  {
+      id: "e_unit4_p_t",
+      title: { en: "Alphabets P-T", hi: "वर्णमाला P-T", bn: "বর্ণমালা P-T" },
+      description: { en: "Letters P, Q, R, S, T", hi: "अक्षर P, Q, R, S, T", bn: "অক্ষর P, Q, R, S, T" },
+      icon: "graduation-cap",
+      steps: [
+          { id: "s_p", type: "info", title: {en:"P is for Pen", hi:"P से Pen", bn:"P তে Pen"}, description: {en:"Pen", hi:"कलम", bn:"কলম"}, image: "https://loremflickr.com/400/300/pen" },
+          { id: "s_q", type: "info", title: {en:"Q is for Queen", hi:"Q से Queen", bn:"Q তে Queen"}, description: {en:"Queen", hi:"रानी", bn:"রানী"}, image: "https://loremflickr.com/400/300/queen" },
+          { id: "s_r", type: "info", title: {en:"R is for Rose", hi:"R से Rose", bn:"R তে Rose"}, description: {en:"Rose", hi:"गुलाब", bn:"গোলাপ"}, image: "https://loremflickr.com/400/300/rose" },
+          { id: "s_s", type: "info", title: {en:"S is for Sun", hi:"S से Sun", bn:"S তে Sun"}, description: {en:"Sun", hi:"सूरज", bn:"সূর্য"}, image: "https://loremflickr.com/400/300/sun" },
+          { id: "s_t", type: "info", title: {en:"T is for Tree", hi:"T से Tree", bn:"T তে Tree"}, description: {en:"Tree", hi:"पेड़", bn:"গাছ"}, image: "https://loremflickr.com/400/300/tree" },
+      ],
+      quiz: [
+          { id: "q1", question: {en:"S is for...", hi:"S से...", bn:"S তে..."}, options: [{en:"Sun", hi:"Sun", bn:"Sun"}, {en:"Tree", hi:"Tree", bn:"Tree"}], correctIndex: 0, explanation: {en:"S is for Sun.", hi:"S से Sun होता है।", bn:"S তে Sun হয়।"} }
+      ]
+  },
+   // Unit 5: U-Z
+  {
+      id: "e_unit5_u_z",
+      title: { en: "Alphabets U-Z", hi: "वर्णमाला U-Z", bn: "বর্ণমালা U-Z" },
+      description: { en: "Letters U, V, W, X, Y, Z", hi: "अक्षर U, V, W, X, Y, Z", bn: "অক্ষর U, V, W, X, Y, Z" },
+      icon: "graduation-cap",
+      steps: [
+          { id: "s_u", type: "info", title: {en:"U is for Umbrella", hi:"U से Umbrella", bn:"U তে Umbrella"}, description: {en:"Umbrella", hi:"छाता", bn:"ছাতা"}, image: "https://loremflickr.com/400/300/umbrella" },
+          { id: "s_v", type: "info", title: {en:"V is for Van", hi:"V से Van", bn:"V তে Van"}, description: {en:"Van", hi:"वैन", bn:"ভ্যান"}, image: "https://loremflickr.com/400/300/van" },
+          { id: "s_w", type: "info", title: {en:"W is for Watch", hi:"W से Watch", bn:"W তে Watch"}, description: {en:"Watch", hi:"घड़ी", bn:"ঘড়ি"}, image: "https://loremflickr.com/400/300/watch" },
+          { id: "s_x", type: "info", title: {en:"X is for X-Ray", hi:"X से X-Ray", bn:"X তে X-Ray"}, description: {en:"X-Ray", hi:"एक्स-रे", bn:"এক্স-রে"}, image: "https://loremflickr.com/400/300/xray" },
+          { id: "s_y", type: "info", title: {en:"Y is for Yak", hi:"Y से Yak", bn:"Y তে Yak"}, description: {en:"Yak", hi:"याक", bn:"ইয়াক"}, image: "https://loremflickr.com/400/300/yak" },
+          { id: "s_z", type: "info", title: {en:"Z is for Zebra", hi:"Z से Zebra", bn:"Z তে Zebra"}, description: {en:"Zebra", hi:"ज़ेबरा", bn:"জেব্রা"}, image: "https://loremflickr.com/400/300/zebra" },
+      ],
+      quiz: [
+          { id: "q1", question: {en:"Z is for...", hi:"Z से...", bn:"Z তে..."}, options: [{en:"Zebra", hi:"Zebra", bn:"Zebra"}, {en:"Yak", hi:"Yak", bn:"Yak"}], correctIndex: 0, explanation: {en:"Z is for Zebra.", hi:"Z से Zebra होता है।", bn:"Z তে Zebra হয়।"} }
+      ]
+  },
+  {
+      id: "e_unit6_greetings",
+      title: { en: "Greetings", hi: "नमस्ते कहना", bn: "শুভেচ্ছা" },
+      description: { en: "Learn to say Hello", hi: "हेलो बोलना सीखें", bn: "হ্যালো বলা শিখুন" },
+      icon: "sun",
+      steps: [
+          {
+              id: "p1",
+              type: "language_practice",
+              title: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              description: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              practice: {
+                  sourceText: { en: "Hello", hi: "नमस्ते", bn: "নমস্কার" },
+                  correctSentence: "Hello",
+                  wordBank: ["Hello", "Bye", "Good"]
+              }
+          },
+           {
+              id: "p2",
+              type: "language_practice",
+              title: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              description: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              practice: {
+                  sourceText: { en: "Good Morning", hi: "सुप्रभात", bn: "সুপ্রভাত" },
+                  correctSentence: "Good Morning",
+                  wordBank: ["Good", "Morning", "Night", "Bad"]
+              }
+          }
+      ],
+      quiz: [
+          {
+            id: "q1",
+            question: { en: "What do you say in the morning?", hi: "सुबह आप क्या कहते हैं?", bn: "সকালে আপনি কি বলেন?" },
+            options: [
+                { en: "Good Morning", hi: "Good Morning", bn: "Good Morning" },
+                { en: "Good Night", hi: "Good Night", bn: "Good Night" }
+            ],
+            correctIndex: 0,
+            explanation: { en: "We say Good Morning.", hi: "हम Good Morning कहते हैं।", bn: "हम Good Morning कहते हैं।" }
+          }
+      ]
+  },
+  {
+      id: "e_unit7_intro",
+      title: { en: "Intro", hi: "परिचय", bn: "ভূমিকা" },
+      description: { en: "Introduce yourself", hi: "अपना परिचय दें", bn: "নিজের পরিচয় দিন" },
+      icon: "user",
+      steps: [
+          {
+              id: "p1",
+              type: "language_practice",
+              title: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              description: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              practice: {
+                  sourceText: { en: "I am Rani", hi: "मैं रानी हूँ", bn: "আমি রানী" },
+                  correctSentence: "I am Rani",
+                  wordBank: ["I", "am", "Rani", "is", "are"]
+              }
+          },
+          {
+              id: "p2",
+              type: "language_practice",
+              title: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              description: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              practice: {
+                  sourceText: { en: "My name is Sita", hi: "मेरा नाम सीता है", bn: "আমার নাম সীতা" },
+                  correctSentence: "My name is Sita",
+                  wordBank: ["My", "name", "is", "Sita", "Your", "am"]
+              }
+          }
+      ],
+      quiz: [
+          {
+            id: "q1",
+            question: { en: "Translate: Mera naam...", hi: "अनुवाद करें: Mera naam...", bn: "অনুবাদ: Mera naam..." },
+            options: [
+                { en: "My name is...", hi: "My name is...", bn: "My name is..." },
+                { en: "I name is...", hi: "I name is...", bn: "I name is..." }
+            ],
+            correctIndex: 0,
+            explanation: { en: "Correct grammar is 'My name is'.", hi: "सही व्याकरण 'My name is' है।", bn: "সঠিক ব্যাকরণ হল 'My name is'।" }
+          }
+      ]
+  },
+  {
+      id: "e_unit8_convo",
+      title: { en: "Chatting", hi: "बातचीत", bn: "কথোপকথন" },
+      description: { en: "Simple conversation", hi: "सरल बातचीत", bn: "সহজ কথোপকথন" },
+      icon: "message-circle",
+      steps: [
+          {
+              id: "p1",
+              type: "language_practice",
+              title: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              description: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              practice: {
+                  sourceText: { en: "How are you?", hi: "आप कैसे हैं?", bn: "আপনি কেমন আছেন?" },
+                  correctSentence: "How are you",
+                  wordBank: ["How", "are", "you", "Who", "is"]
+              }
+          },
+           {
+              id: "p2",
+              type: "language_practice",
+              title: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              description: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
+              practice: {
+                  sourceText: { en: "I am happy", hi: "मैं खुश हूँ", bn: "আমি খুশি" },
+                  correctSentence: "I am happy",
+                  wordBank: ["I", "am", "happy", "sad", "good"]
+              }
+          }
+      ],
+      quiz: [
+           {
+            id: "q1",
+            question: { en: "Answer: How are you?", hi: "उत्तर दें: How are you?", bn: "উত্তর: How are you?" },
+            options: [
+                { en: "I am good", hi: "I am good", bn: "I am good" },
+                { en: "I am apple", hi: "I am apple", bn: "I am apple" }
+            ],
+            correctIndex: 0,
+            explanation: { en: "A person feels 'good' or 'bad', not 'apple'.", hi: "कोई व्यक्ति 'अच्छा' या 'बुरा' महसूस करता है, 'सेब' नहीं।", bn: "একজন ব্যক্তি 'ভালো' বা 'খারাপ' অনুভব করেন, 'আপেল' নয়।" }
+          }
+      ]
+  },
+
+  // --- CORE DIGITAL LITERACY LESSONS ---
   {
     id: "l1_smartphone",
     title: { en: "1. Using Your Smartphone", hi: "1. अपना स्मार्टफोन उपयोग करें", bn: "১. স্মার্টফোন ব্যবহার" },
@@ -136,7 +388,7 @@ export const LESSONS: Lesson[] = [
         question: { en: "How do you open an app?", hi: "आप कोई ऐप कैसे खोलते हैं?", bn: "আপনি কীভাবে একটি অ্যাপ খুলবেন?" },
         options: [
           { en: "Tap on it", hi: "उस पर टैप करके", bn: "এটি ট্যাপ করে" },
-          { en: "Shake the phone", hi: "फोन हिलाकर", bn: "ফোন ঝাঁকিয়ে" }
+          { en: "Shake the phone", hi: "फोन हिलाकर", bn: "फोन ঝাঁकিয়ে" }
         ],
         correctIndex: 0,
         explanation: { en: "Tapping is the basic way to select or open items on a smartphone.", hi: "टैप करना स्मार्टफोन पर आइटम चुनने या खोलने का मूल तरीका है।", bn: "ট্যাপ করা স্মার্টফোনে আইটেম নির্বাচন বা খোলার মৌলিক উপায়।" }
@@ -195,7 +447,7 @@ export const LESSONS: Lesson[] = [
             question: { en: "Who should you share your UPI PIN with?", hi: "आपको अपना UPI पिन किसके साथ साझा करना चाहिए?", bn: "আপনার UPI পিন কার সাথে শেয়ার করা উচিত?" },
             options: [
               { en: "Family", hi: "परिवार", bn: "পরিবার" },
-              { en: "No One", hi: "किसी से नहीं", bn: "কারো সাথে না" }
+              { en: "No One", hi: "किसी से नहीं", bn: "किसी से नहीं" }
             ],
             correctIndex: 1,
             explanation: { en: "Your UPI PIN is secret. Sharing it allows others to take your money.", hi: "आपका UPI पिन गुप्त है। इसे साझा करने से दूसरे आपके पैसे ले सकते हैं।", bn: "আপনার UPI পিন গোপন। এটি শেয়ার করলে অন্যরা আপনার টাকা নিতে পারে।" }
@@ -212,7 +464,7 @@ export const LESSONS: Lesson[] = [
         },
         {
             id: "q3",
-            question: { en: "To receive money, what is safe to share?", hi: "पैसे प्राप्त करने के लिए, क्या साझा करना सुरक्षित है?", bn: "টাকা পেতে, কী শেয়ার করা নিরাপদ?" },
+            question: { en: "To receive money, what is safe to share?", hi: "पैसे प्राप्त करने के लिए, क्या साझा करना सुरक्षित है?", bn: "टাকা পেতে, কী শেয়ার করা নিরাপদ?" },
             options: [
               { en: "UPI ID", hi: "UPI आईडी", bn: "UPI आईडी" },
               { en: "UPI PIN", hi: "UPI पिन", bn: "UPI পিন" }
@@ -245,8 +497,8 @@ export const LESSONS: Lesson[] = [
             id: "q1",
             question: { en: "What do you scan to pay?", hi: "भुगतान करने के लिए आप क्या स्कैन करते हैं?", bn: "পেমেন্ট করতে আপনি কী স্ক্যান করেন?" },
             options: [
-              { en: "Barcode", hi: "बारकोड", bn: "বারকোড" },
-              { en: "QR Code", hi: "QR कोड", bn: "QR কোড" }
+              { en: "Barcode", hi: "बारकोड", bn: "बारकोड" },
+              { en: "QR Code", hi: "QR कोड", bn: "QR कोड" }
             ],
             correctIndex: 1,
             explanation: { en: "QR Codes (Quick Response) are the square patterns used for payments.", hi: "QR कोड (क्विक रिस्पांस) भुगतान के लिए उपयोग किए जाने वाले चौकोर पैटर्न हैं।", bn: "QR কোড (কুইক রেসপন্স) হল পেমেন্টের জন্য ব্যবহৃত স্কোয়ার প্যাটার্ন।" }
@@ -255,8 +507,8 @@ export const LESSONS: Lesson[] = [
             id: "q2",
             question: { en: "What should you check before entering PIN?", hi: "पिन दर्ज करने से पहले आपको क्या जांचना चाहिए?", bn: "পিন দেওয়ার আগে আপনার কী পরীক্ষা করা উচিত?" },
             options: [
-              { en: "Receiver's Name", hi: "प्राप्तकर्ता का नाम", bn: "প্রাপকের नाम" },
-              { en: "Weather", hi: "मौसम", bn: "আবহাওয়া" }
+              { en: "Receiver's Name", hi: "प्राप्तकर्ता का नाम", bn: "प्राप्तकर्ता का नाम" },
+              { en: "Weather", hi: "मौसम", bn: "मौसम" }
             ],
             correctIndex: 0,
             explanation: { en: "Always ensure the name displayed matches who you want to pay.", hi: "हमेशा सुनिश्चित करें कि प्रदर्शित नाम वही है जिसे आप भुगतान करना चाहते हैं।", bn: "সর্বদা নিশ্চিত করুন যে প্রদর্শিত নামটি আপনি যাকে পেমেন্ট করতে চান তার সাথে মিলছে।" }
@@ -265,8 +517,8 @@ export const LESSONS: Lesson[] = [
             id: "q3",
             question: { en: "What happens if you enter wrong PIN?", hi: "यदि आप गलत पिन दर्ज करते हैं तो क्या होता है?", bn: "भूल পিন দিলে क्या होगा?" },
             options: [
-              { en: "Money Lost", hi: "पैसे खो जाएंगे", bn: "টাকা হারিয়ে যাবে" },
-              { en: "Payment Fails", hi: "भुगतान विफल", bn: "পেমেন্ট ব্যর্থ হবে" }
+              { en: "Money Lost", hi: "पैसे खो जाएंगे", bn: "पैसे खो जाएंगे" },
+              { en: "Payment Fails", hi: "भुगतान विफल", bn: "भुगतान विफल" }
             ],
             correctIndex: 1,
             explanation: { en: "The bank rejects the transaction if the PIN is incorrect. Your money is safe.", hi: "यदि पिन गलत है तो बैंक लेनदेन को अस्वीकार कर देता है। आपका पैसा सुरक्षित है।", bn: "পিন ভুল হলে ব্যাঙ্ক লেনদেন প্রত্যাখ্যান করে। আপনার টাকা নিরাপদ।" }
@@ -308,7 +560,7 @@ export const LESSONS: Lesson[] = [
         },
         {
             id: "q2",
-            question: { en: "Does Paytm work for all banks?", hi: "क्या Paytm सभी बैंकों के लिए काम करता है?", bn: "Paytm क्या सब ব্যাঙ্কের জন্য काम करता है?" },
+            question: { en: "Does Paytm work for all banks?", hi: "क्या Paytm सभी बैंकों के लिए काम करता है?", bn: "Paytm क्या सब ব্যাঙ্কের लिए काम करता है?" },
             options: [
                 {en: "Yes", hi: "हाँ", bn: "হ্যাঁ"},
                 {en: "No", hi: "नहीं", bn: "না"}
@@ -383,7 +635,7 @@ export const LESSONS: Lesson[] = [
       {
         id: "s3", type: "info",
         title: { en: "Documents Needed", hi: "आवश्यक दस्तावेज", bn: "प्रয়োজনীয় নথি" },
-        description: { en: "Always carry your Aadhar Card, Bank Passbook, and Mobile Phone when visiting a CSC.", hi: "CSC जाते समय हमेशा अपना आधार कार्ड, बैंक पासबुक और मोबाइल फोन साथ रखें।", bn: "CSC পরিদর্শন করার সময় সর্বদা আপনার আধার কার্ড, ব্যাঙ্ক পাসবুক और মোবাইল ফোন সাথে রাখুন।" },
+        description: { en: "Always carry your Aadhar Card, Bank Passbook, and Mobile Phone when visiting a CSC.", hi: "CSC जाते समय हमेशा अपना आधार कार्ड, बैंक पासबुक और मोबाइल फोन साथ रखें।", bn: "CSC পরিদর্শন করার সময় সর্বদা আপনার আধার কার্ড, ব্যাঙ্ক পাসবুক এবং মোবাইল ফোন সাথে রাখুন।" },
         image: "https://picsum.photos/id/20/400/300"
       }
     ],
@@ -403,7 +655,7 @@ export const LESSONS: Lesson[] = [
             question: { en: "What document is most important?", hi: "कौन सा दस्तावेज सबसे महत्वपूर्ण है?", bn: "কোন নথিটি সবচেয়ে গুরুত্বপূর্ণ?" },
             options: [
                 {en: "Aadhar Card", hi: "आधार कार्ड", bn: "আধার কার্ড"},
-                {en: "Movie Ticket", hi: "मूवी टिकट", bn: "মুভি টিকিট"}
+                {en: "Movie Ticket", hi: "मूवी टिकट", bn: "मूवी टिकट"}
             ],
             correctIndex: 0,
             explanation: { en: "Aadhar Card is the primary identity proof needed for most services.", hi: "अधिकांश सेवाओं के लिए आधार कार्ड प्राथमिक पहचान प्रमाण है।", bn: "আধার কার্ড হল বেশিরভাগ পরিষেবার জন্য প্রয়োজনীয় প্রাথমিক পরিচয় প্রমাণ।" }
@@ -413,10 +665,10 @@ export const LESSONS: Lesson[] = [
             question: { en: "Do CSCs charge huge money?", hi: "क्या CSC बहुत पैसे लेते हैं?", bn: "CSCs क्या বিশাল টাকা চার্জ করে?" },
             options: [
                 {en: "Yes, very expensive", hi: "हाँ, बहुत महंगा", bn: "হ্যাঁ, बहुत ব্যয়বহুল"},
-                {en: "No, nominal government fee", hi: "नहीं, मामूली सरकारी शुल्क", bn: "না, নামমাত্র সরকারি ফি"}
+                {en: "No, nominal government fee", hi: "नहीं, मामूली सरकारी शुल्क", bn: "ना, नाममात्र सरकारी शुल्क"}
             ],
             correctIndex: 1,
-            explanation: { en: "CSCs charge low, government-fixed fees for services.", hi: "CSC सेवाओं के लिए कम, सरकार द्वारा निर्धारित शुल्क लेते हैं।", bn: "CSC পরিষেবার জন্য कम, सरकार-নির্ধারিত ফি নেয়।" }
+            explanation: { en: "CSCs charge low, government-fixed fees for services.", hi: "CSC सेवाओं के लिए कम, सरकार द्वारा निर्धारित शुल्क लेते हैं।", bn: "CSC পরিষেবার জন্য কম, সরকার নির্ধারিত ফি নেয়।" }
         }
     ]
   }
