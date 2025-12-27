@@ -8,7 +8,7 @@ import {
     Smartphone, IndianRupee, ScanLine, Wallet, Zap, Landmark, BookOpen, 
     Trophy, CreditCard, Settings, Home, User as UserIcon, Crown, ChevronLeft, 
     Search, Check, X, ArrowRight, Menu, LogOut, CheckCircle, GraduationCap,
-    Grid, Banknote, QrCode
+    Grid, Banknote, QrCode, Monitor
 } from 'lucide-react';
 
 // --- Context ---
@@ -374,7 +374,9 @@ const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) =>
   const [tab, setTab] = useState<'home' | 'profile'>('home');
 
   const nextLessonIndex = LESSONS.findIndex(l => !user?.completedLessons.includes(l.id));
-  const activeLesson = nextLessonIndex !== -1 ? LESSONS[nextLessonIndex] : LESSONS[0];
+  // If all completed, stick to the last one or show a completion state
+  const activeLesson = nextLessonIndex !== -1 ? LESSONS[nextLessonIndex] : LESSONS[LESSONS.length - 1];
+  const allCompleted = nextLessonIndex === -1 && user?.completedLessons.length === LESSONS.length;
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -396,39 +398,52 @@ const Dashboard: React.FC<{ setRoute: (r: string) => void }> = ({ setRoute }) =>
       ) : (
           <>
             {/* Hero Card */}
-            <Card className="relative w-full aspect-[1.6] p-6 flex flex-col justify-between overflow-hidden">
+            <div className="relative w-full aspect-[1.35] bg-white border-2 border-black rounded-[2rem] p-7 flex flex-col justify-between overflow-hidden shadow-neobrutalism">
                 {/* Decorative Pattern lines */}
-                <div className="absolute -right-10 -top-10 w-40 h-40 border-2 border-black rounded-full opacity-20"></div>
-                <div className="absolute right-10 bottom-[-20px] w-20 h-20 border-2 border-black rounded-full opacity-20"></div>
+                <div className="absolute right-[-20%] top-[-10%] w-[80%] h-[120%] rounded-full border-[1px] border-gray-200 opacity-60 pointer-events-none"></div>
+                <div className="absolute right-[10%] bottom-[-30%] w-[60%] h-[80%] rounded-full border-[1px] border-gray-200 opacity-60 pointer-events-none"></div>
 
+                {/* Top Row */}
                 <div className="flex justify-between items-start z-10">
-                    <div className="w-12 h-8 border-2 border-black rounded-md flex items-center justify-center bg-gray-100">
-                        <div className="w-8 h-4 border border-gray-400 rounded-sm"></div>
+                    <div className="w-14 h-11 bg-blue-50 border-2 border-black rounded-xl flex items-center justify-center">
+                         <Monitor className="w-6 h-6 text-blue-600 stroke-[2.5]" />
                     </div>
-                    <span className="font-bold text-lg italic tracking-tighter">RANI</span>
+                    <span className="font-black text-xl italic tracking-tighter text-black">RANI</span>
                 </div>
 
-                <div className="z-10">
-                    <p className="text-sm font-medium text-gray-500 mb-1">Up Next</p>
-                    <h2 className="text-2xl font-bold leading-tight">{activeLesson.title[language]}</h2>
-                    <div className="flex gap-2 mt-2">
-                         {[1,2,3,4].map(i => <div key={i} className="w-2 h-2 bg-black rounded-full"></div>)}
+                {/* Middle Content */}
+                <div className="z-10 mt-2">
+                    <p className="text-[10px] font-bold tracking-[0.2em] text-gray-500 mb-2 uppercase">
+                        {allCompleted ? 'Completed' : 'Up Next'}
+                    </p>
+                    <h2 className="text-3xl font-black leading-tight text-black mb-4 line-clamp-2">
+                        {activeLesson.title[language]}
+                    </h2>
+                    
+                    {/* Colored Dots */}
+                    <div className="flex gap-3">
+                         <div className="w-3 h-3 rounded-full bg-[#3b82f6] border border-black"></div>
+                         <div className="w-3 h-3 rounded-full bg-[#ef4444] border border-black"></div>
+                         <div className="w-3 h-3 rounded-full bg-[#eab308] border border-black"></div>
+                         <div className="w-3 h-3 rounded-full bg-[#22c55e] border border-black"></div>
                     </div>
                 </div>
 
-                <div className="flex justify-between items-end z-10">
+                {/* Bottom Row */}
+                <div className="flex justify-between items-center z-10">
                     <div>
-                        <p className="text-[10px] uppercase tracking-wider text-gray-500">Student</p>
-                        <p className="font-bold">{user?.name}</p>
+                        <p className="text-[10px] font-bold tracking-[0.2em] text-gray-500 mb-1 uppercase">Student</p>
+                        <p className="font-bold text-black text-lg">{user?.name}</p>
                     </div>
                     <button 
                          onClick={() => setRoute(`lesson/${activeLesson.id}`)}
-                         className="bg-black text-white px-6 py-2 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-zinc-800 transition-colors"
+                         className="bg-black text-white pl-6 pr-5 py-3 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-zinc-800 transition-transform active:scale-95 flex items-center gap-2 group border-2 border-black"
                     >
-                        Start
+                        {allCompleted ? 'REVIEW' : 'START'}
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                 </div>
-            </Card>
+            </div>
 
             {/* Action Grid */}
             <div className="grid grid-cols-4 gap-4">
