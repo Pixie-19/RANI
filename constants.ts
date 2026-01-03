@@ -244,29 +244,18 @@ export const LESSONS: Lesson[] = [
                   correctSentence: "Hello",
                   wordBank: ["Hello", "Bye", "Good"]
               }
-          },
-           {
-              id: "p2",
-              type: "language_practice",
-              title: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
-              description: { en: "Translate", hi: "अनुवाद", bn: "অনুবাদ" },
-              practice: {
-                  sourceText: { en: "Good Morning", hi: "सुप्रभात", bn: "সুপ্রভাত" },
-                  correctSentence: "Good Morning",
-                  wordBank: ["Good", "Morning", "Night", "Bad"]
-              }
           }
       ],
       quiz: [
           {
             id: "q1",
-            question: { en: "What do you say in the morning?", hi: "सुबह आप क्या कहते हैं?", bn: "সকালে আপনি কি বলেন?" },
+            question: { en: "What do you say in the morning?", hi: "सुबह आप क्या कहते हैं?", bn: "সকালে আপনি কী বলেন?" },
             options: [
                 { en: "Good Morning", hi: "Good Morning", bn: "Good Morning" },
                 { en: "Good Night", hi: "Good Night", bn: "Good Night" }
             ],
             correctIndex: 0,
-            explanation: { en: "We say Good Morning.", hi: "हम Good Morning कहते हैं।", bn: "हम Good Morning कहते हैं।" }
+            explanation: { en: "We say Good Morning.", hi: "हम Good Morning कहते हैं।", bn: "আমরা সকালে Good Morning বলি।" }
           }
       ]
   },
@@ -365,21 +354,15 @@ export const LESSONS: Lesson[] = [
       {
         id: "s1", type: "info",
         title: { en: "Tapping", hi: "टैप करना (छूना)", bn: "ট্যাপ করা" },
-        description: { en: "Touch the screen lightly with one finger to open apps or select items. Think of it like a doorbell press.", hi: "ऐप्स खोलने या आइटम चुनने के लिए स्क्रीन को एक उंगली से हल्के से छुएं। इसे डोरबेल दबाने जैसा समझें।", bn: "অ্যাপ খুলতে বা আইটেম নির্বাচন করতে এক আঙুল দিয়ে আলতোভাবে স্ক্রিন স্পর্শ করুন। এটি দরজার বেল টিপানোর মতো মনে করুন।" },
+        description: { en: "Touch the screen lightly with one finger to open apps or select items. Think of it like a doorbell press.", hi: "ऐप्स खोलने या आइटम चुनने के लिए स्क्रीन को एक उंगली से हल्के से छुएं।", bn: "অ্যাপ খুলতে বা আইটেম নির্বাচন করতে এক আঙুল দিয়ে আলতোভাবে স্ক্রিন স্পর্শ করুন।" },
         image: "https://picsum.photos/id/1/400/300"
       },
       {
         id: "s2", type: "info",
         title: { en: "Swiping", hi: "स्वाइप करना (सरकाना)", bn: "সোয়াইপ করা" },
-        description: { en: "Slide your finger across the screen (up, down, left, right) to see more content. This is like turning a page.", hi: "और देखने के लिए अपनी उंगली को स्क्रीन पर सरकाएं (ऊपर, नीचे, बाएं, दाएं)। यह पन्ना पलटने जैसा है।", bn: "আরও দেখতে স্ক্রিনে আপনার আঙুল স্লাইড করুন (উপরে, নিচে, বামে, ডানে)। এটি পৃষ্ঠা উল্টানোর মতো।" },
+        description: { en: "Slide your finger across the screen to see more content. This is like turning a page.", hi: "और देखने के लिए अपनी उंगली को स्क्रीन पर सरकाएं।", bn: "আরও দেখতে স্ক্রিনে আপনার আঙুল স্লাইড করুন। এটি পৃষ্ঠা উল্টানোর মতো।" },
         image: "https://picsum.photos/id/2/400/300",
         video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-      },
-      {
-        id: "s3", type: "info",
-        title: { en: "Volume & Power", hi: "वॉल्यूम और पावर", bn: "ভলিউম और পাওয়ার" },
-        description: { en: "Buttons on the side control sound (Volume) and turn the screen on/off (Power).", hi: "किनारे के बटन ध्वनि (वॉल्यूम) को नियंत्रित करते हैं और स्क्रीन को चालू/बंद (पावर) करते हैं।", bn: "পাশের বোতামগুলি শব্দ (ভলিউম) নিয়ন্ত্রণ করে এবং স্ক্রিন চালু/বন্ধ (পাওয়ার) করে।" },
-        image: "https://picsum.photos/id/8/400/300"
       }
     ],
     quiz: [
@@ -388,30 +371,10 @@ export const LESSONS: Lesson[] = [
         question: { en: "How do you open an app?", hi: "आप कोई ऐप कैसे खोलते हैं?", bn: "আপনি কীভাবে একটি অ্যাপ খুলবেন?" },
         options: [
           { en: "Tap on it", hi: "उस पर टैप करके", bn: "এটি ট্যাপ করে" },
-          { en: "Shake the phone", hi: "फोन हिलाकर", bn: "फोन ঝাঁकিয়ে" }
+          { en: "Shake the phone", hi: "फोन हिलाकर", bn: "ফোন ঝাঁকিয়ে" }
         ],
         correctIndex: 0,
-        explanation: { en: "Tapping is the basic way to select or open items on a smartphone.", hi: "टैप करना स्मार्टफोन पर आइटम चुनने या खोलने का मूल तरीका है।", bn: "ট্যাপ করা স্মার্টফোনে আইটেম নির্বাচন বা খোলার মৌলিক উপায়।" }
-      },
-      {
-        id: "q2",
-        question: { en: "How do you see more photos below?", hi: "आप नीचे और फोटो कैसे देखते हैं?", bn: "আপনি नीचे আরও ছবি কিভাবে দেখবেন?" },
-        options: [
-          { en: "Tap screen", hi: "स्क्रीन टैप करें", bn: "স্ক্রিন ট্যাপ করুন" },
-          { en: "Swipe Up", hi: "ऊपर स्वाइप करें", bn: "উপরে সোয়াইপ করুন" }
-        ],
-        correctIndex: 1,
-        explanation: { en: "Swiping up moves the screen down to show content hidden at the bottom.", hi: "ऊपर की ओर स्वाइप करने से स्क्रीन नीचे चली जाती है और नीचे छिपी सामग्री दिखाई देती है।", bn: "উপরে সোয়াইপ করলে স্ক্রিন নিচে চলে যায় और नीचे লুকানো কন্টেন্ট দেখা যায়।" }
-      },
-      {
-        id: "q3",
-        question: { en: "Which button turns off the screen?", hi: "कौन सा बटन स्क्रीन बंद करता है?", bn: "কোন বোতামটি স্ক্রিন বন্ধ করে?" },
-        options: [
-          { en: "Volume Button", hi: "वॉल्यूम बटन", bn: "ভলিউম বোতাম" },
-          { en: "Power Button", hi: "पावर बटन", bn: "পাওয়ার বোতাম" }
-        ],
-        correctIndex: 1,
-        explanation: { en: "The Power button controls the screen's on/off state.", hi: "पावर बटन स्क्रीन की चालू/बंद स्थिति को नियंत्रित करता है।", bn: "পাওয়ার বোতামটি স্ক্রিনের চালু/বন্ধ অবস্থা নিয়ন্ত্রণ করে।" }
+        explanation: { en: "Tapping is the basic way to select items.", hi: "टैप करना स्मार्टफोन पर आइटम चुनने का मूल तरीका है।", bn: "ট্যাপ করা স্মার্টফোনে আইটেম নির্বাচন করার মৌলিক উপায়।" }
       }
     ]
   },
@@ -474,7 +437,7 @@ export const LESSONS: Lesson[] = [
         }
     ]
   },
-  {
+{
     id: "l3_upi_sim",
     title: { en: "3. Making a Payment", hi: "3. भुगतान करना", bn: "৩. পেমেন্ট করা" },
     description: { en: "Practice sending money safely", hi: "सुरक्षित रूप से पैसे भेजने का अभ्यास करें", bn: "নিরাপদে টাকা পাঠানোর অভ্যাস করুন" },
@@ -489,7 +452,7 @@ export const LESSONS: Lesson[] = [
       {
         id: "s2", type: "simulation", simulationType: "upi_pay",
         title: { en: "Practice Now", hi: "अभी अभ्यास करें", bn: "এখন অনুশীলন করুন" },
-        description: { en: "Try sending ₹50 using this simulation. Use PIN 1234.", hi: "इस सिमुलेशन का उपयोग करके ₹50 भेजने का प्रयास करें। पिन 1234 का प्रयोग करें।", bn: "এই সিমুলেশন ব্যবহার করে ₹50 পাঠানোর চেষ্টা করুন। পিন 1234 ব্যবহার করুন।" },
+        description: { en: "Try sending ₹50 using this simulation. Use PIN 1234.", hi: "इस सिमुलेशन का उपयोग करके ₹50 भेजने का प्रयास करें। पिन 1234 का प्रयोग करें।", bn: "এই সিমুলেশন ব্যবহার করে ₹৫০ পাঠানোর চেষ্টা করুন। পিন ১২৩৪ ব্যবহার করুন।" },
       }
     ],
     quiz: [
@@ -497,8 +460,8 @@ export const LESSONS: Lesson[] = [
             id: "q1",
             question: { en: "What do you scan to pay?", hi: "भुगतान करने के लिए आप क्या स्कैन करते हैं?", bn: "পেমেন্ট করতে আপনি কী স্ক্যান করেন?" },
             options: [
-              { en: "Barcode", hi: "बारकोड", bn: "बारकोड" },
-              { en: "QR Code", hi: "QR कोड", bn: "QR कोड" }
+              { en: "Barcode", hi: "बारकोड", bn: "বারকোড" },
+              { en: "QR Code", hi: "QR कोड", bn: "QR কোড" }
             ],
             correctIndex: 1,
             explanation: { en: "QR Codes (Quick Response) are the square patterns used for payments.", hi: "QR कोड (क्विक रिस्पांस) भुगतान के लिए उपयोग किए जाने वाले चौकोर पैटर्न हैं।", bn: "QR কোড (কুইক রেসপন্স) হল পেমেন্টের জন্য ব্যবহৃত স্কোয়ার প্যাটার্ন।" }
@@ -507,18 +470,18 @@ export const LESSONS: Lesson[] = [
             id: "q2",
             question: { en: "What should you check before entering PIN?", hi: "पिन दर्ज करने से पहले आपको क्या जांचना चाहिए?", bn: "পিন দেওয়ার আগে আপনার কী পরীক্ষা করা উচিত?" },
             options: [
-              { en: "Receiver's Name", hi: "प्राप्तकर्ता का नाम", bn: "प्राप्तकर्ता का नाम" },
-              { en: "Weather", hi: "मौसम", bn: "मौसम" }
+              { en: "Receiver's Name", hi: "प्राप्तकर्ता का नाम", bn: "প্রাপকের নাম" },
+              { en: "Weather", hi: "मौसम", bn: "আবহাওয়া" }
             ],
             correctIndex: 0,
             explanation: { en: "Always ensure the name displayed matches who you want to pay.", hi: "हमेशा सुनिश्चित करें कि प्रदर्शित नाम वही है जिसे आप भुगतान करना चाहते हैं।", bn: "সর্বদা নিশ্চিত করুন যে প্রদর্শিত নামটি আপনি যাকে পেমেন্ট করতে চান তার সাথে মিলছে।" }
         },
         {
             id: "q3",
-            question: { en: "What happens if you enter wrong PIN?", hi: "यदि आप गलत पिन दर्ज करते हैं तो क्या होता है?", bn: "भूल পিন দিলে क्या होगा?" },
+            question: { en: "What happens if you enter wrong PIN?", hi: "यदि आप गलत पिन दर्ज करते हैं तो क्या होता है?", bn: "ভুল পিন দিলে কী হবে?" },
             options: [
-              { en: "Money Lost", hi: "पैसे खो जाएंगे", bn: "पैसे खो जाएंगे" },
-              { en: "Payment Fails", hi: "भुगतान विफल", bn: "भुगतान विफल" }
+              { en: "Money Lost", hi: "पैसे खो जाएंगे", bn: "টাকা হারিয়ে যাবে" },
+              { en: "Payment Fails", hi: "भुगतान विफल", bn: "পেমেন্ট ব্যর্থ হবে" }
             ],
             correctIndex: 1,
             explanation: { en: "The bank rejects the transaction if the PIN is incorrect. Your money is safe.", hi: "यदि पिन गलत है तो बैंक लेनदेन को अस्वीकार कर देता है। आपका पैसा सुरक्षित है।", bn: "পিন ভুল হলে ব্যাঙ্ক লেনদেন প্রত্যাখ্যান করে। আপনার টাকা নিরাপদ।" }
@@ -536,9 +499,9 @@ export const LESSONS: Lesson[] = [
         title: { en: "Watch: How to use Paytm", hi: "देखें: Paytm का उपयोग कैसे करें", bn: "দেখুন: Paytm কীভাবে ব্যবহার করবেন" },
         description: { en: "A short video guide on how to open and use Paytm for payments.", hi: "भुगतान के लिए Paytm खोलने और उपयोग करने के बारे में एक संक्षिप्त वीडियो गाइड।", bn: "পেমেন্টের জন্য Paytm খোলা এবং ব্যবহার করার একটি সংক্ষিপ্ত ভিডিও নির্দেশিকা।" },
         video: {
-            en: "https://youtu.be/4GlMPJs5Wu4?si=Pa33Vt8lbXQnqffu",
-            hi: "https://youtu.be/4GlMPJs5Wu4?si=Pa33Vt8lbXQnqffu",
-            bn: "https://youtu.be/jJKuaX50yos?si=7T_pGusycOT51yB8"
+            en: "https://youtu.be/4GlMPJs5Wu4?si=QtzDWl0L34nz4C2V",
+            hi: "https://youtu.be/4GlMPJs5Wu4?si=QtzDWl0L34nz4C2V",
+            bn: "https://youtu.be/jJKuaX50yos?si=j0eE6thKzNg1YiZ_"
         }
        },
        {
@@ -556,17 +519,17 @@ export const LESSONS: Lesson[] = [
                 {en: "No", hi: "नहीं", bn: "না"}
             ],
             correctIndex: 0,
-            explanation: { en: "Yes, Paytm allows you to check the balance of linked bank accounts.", hi: "हाँ, Paytm आपको जुड़े हुए बैंक खातों का बैलेंस चेक करने की अनुमति देता है।", bn: "হ্যাঁ, Paytm আপনাকে লিঙ্ক করা ব্যাঙ্ক অ্যাকাউন্টগুলির ব্যালেন্স চেক করতে দেয়।" }
+            explanation: { en: "Yes, Paytm allows you to check the balance of linked bank accounts.", hi: "हाँ, Paytm आपको जुड़े हुए बैंक खातों का बैलेंस चेक करने की अनुमति देता है।", bn: "হ্যাঁ, Paytm আপনাকে লিঙ্ক করা ব্যাঙ্ক অ্যাকাউন্টগুলির ব্যালেন্স চেক করতে দেয়।" }
         },
         {
             id: "q2",
-            question: { en: "Does Paytm work for all banks?", hi: "क्या Paytm सभी बैंकों के लिए काम करता है?", bn: "Paytm क्या सब ব্যাঙ্কের लिए काम करता है?" },
+            question: { en: "Does Paytm work for all banks?", hi: "क्या Paytm सभी बैंकों के लिए काम करता है?", bn: "Paytm কি সব ব্যাঙ্কের জন্য কাজ করে?" },
             options: [
                 {en: "Yes", hi: "हाँ", bn: "হ্যাঁ"},
                 {en: "No", hi: "नहीं", bn: "না"}
             ],
             correctIndex: 0,
-            explanation: { en: "Yes, UPI works with almost all banks in India.", hi: "हाँ, UPI भारत के लगभग सभी बैंकों के साथ काम करता है।", bn: "হ্যাঁ, UPI ভারতের প্রায় সব ব্যাঙ্কের साथ काम करता है।" }
+            explanation: { en: "Yes, UPI works with almost all banks in India.", hi: "हाँ, UPI भारत के लगभग सभी बैंकों के साथ काम करता है।", bn: "হ্যাঁ, UPI ভারতের প্রায় সব ব্যাঙ্কের সাথে কাজ করে।" }
         }
     ]
   },
@@ -581,9 +544,9 @@ export const LESSONS: Lesson[] = [
         title: { en: "Watch: How to use GPay", hi: "देखें: Google Pay का उपयोग कैसे करें", bn: "দেখুন: Google Pay কীভাবে ব্যবহার করবেন" },
         description: { en: "A short video guide on using Google Pay securely.", hi: "Google Pay को सुरक्षित रूप से उपयोग करने पर एक संक्षिप्त वीडियो गाइड।", bn: "নিরাপদে Google Pay ব্যবহার করার একটি সংক্ষিপ্ত ভিডিও নির্দেশিকা।" },
         video: {
-            en: "https://www.youtube.com/embed/UwXzg3YShzA",
-            hi: "https://www.youtube.com/embed/UwXzg3YShzA",
-            bn: "https://www.youtube.com/embed/aLEzfBWiQ2Y"
+            en: "https://youtu.be/UwXzg3YShzA?si=mW9mnUYpagP7i4ek",
+            hi: "https://youtu.be/UwXzg3YShzA?si=mW9mnUYpagP7i4ek",
+            bn: "https://youtu.be/aLEzfBWiQ2Y?si=Fd7yfBqlbRcY9S-f"
         }
        },
        {
@@ -595,7 +558,7 @@ export const LESSONS: Lesson[] = [
     quiz: [
         {
             id: "q1",
-            question: { en: "Is GPay linked to your bank?", hi: "क्या GPay आपके बैंक से जुड़ा है?", bn: "GPay क्या आपके ব্যাঙ্কের সাথে লিঙ্ক করা আছে?" },
+            question: { en: "Is GPay linked to your bank?", hi: "क्या GPay आपके बैंक से जुड़ा है?", bn: "GPay কি আপনার ব্যাঙ্কের সাথে লিঙ্ক করা আছে?" },
             options: [
                 {en: "Yes", hi: "हाँ", bn: "হ্যাঁ"},
                 {en: "No", hi: "नहीं", bn: "না"}
@@ -605,7 +568,7 @@ export const LESSONS: Lesson[] = [
         },
         {
             id: "q2",
-            question: { en: "Is it safe to pay strangers online?", hi: "क्या ऑनलाइन अजनबियों को भुगतान करना सुरक्षित है?", bn: "অনলাইনে অপরিচিতদের পেমেন্ট করা क्या নিরাপদ?" },
+            question: { en: "Is it safe to pay strangers online?", hi: "क्या ऑनलाइन अजनबियों को भुगतान करना सुरक्षित है?", bn: "অনলাইনে অপরিচিতদের পেমেন্ট করা কি নিরাপদ?" },
             options: [
                 {en: "Yes", hi: "हाँ", bn: "হ্যাঁ"},
                 {en: "No, verify first", hi: "नहीं, पहले सत्यापित करें", bn: "না, আগে যাচাই করুন" }
@@ -634,7 +597,7 @@ export const LESSONS: Lesson[] = [
       },
       {
         id: "s3", type: "info",
-        title: { en: "Documents Needed", hi: "आवश्यक दस्तावेज", bn: "प्रয়োজনীয় নথি" },
+        title: { en: "Documents Needed", hi: "आवश्यक दस्तावेज", bn: "প্রয়োজনীয় নথি" },
         description: { en: "Always carry your Aadhar Card, Bank Passbook, and Mobile Phone when visiting a CSC.", hi: "CSC जाते समय हमेशा अपना आधार कार्ड, बैंक पासबुक और मोबाइल फोन साथ रखें।", bn: "CSC পরিদর্শন করার সময় সর্বদা আপনার আধার কার্ড, ব্যাঙ্ক পাসবুক এবং মোবাইল ফোন সাথে রাখুন।" },
         image: "https://picsum.photos/id/20/400/300"
       }
@@ -645,30 +608,30 @@ export const LESSONS: Lesson[] = [
             question: { en: "What helps with Aadhar applications?", hi: "आधार आवेदन में क्या मदद करता है?", bn: "আধার আবেদনে কী সাহায্য করে?" },
             options: [
                 {en: "CSC Center", hi: "CSC केंद्र", bn: "CSC কেন্দ্র"},
-                {en: "Cinema Hall", hi: "सिनेमा हॉल", bn: "সিনেমা हॉल"}
+                {en: "Cinema Hall", hi: "सिनेमा हॉल", bn: "সিনেমা হল"}
             ],
             correctIndex: 0,
             explanation: { en: "CSC Centers are authorized to help with government schemes like Aadhar.", hi: "CSC केंद्र आधार जैसी सरकारी योजनाओं में मदद करने के लिए अधिकृत हैं।", bn: "CSC কেন্দ্রগুলি আধার-এর মতো সরকারি প্রকল্পে সাহায্য করার জন্য অনুমোদিত।" }
         },
         {
             id: "q2",
-            question: { en: "What document is most important?", hi: "कौन सा दस्तावेज सबसे महत्वपूर्ण है?", bn: "কোন নথিটি সবচেয়ে গুরুত্বপূর্ণ?" },
+            question: { en: "What document is most important?", hi: "कौन सा दस्तावेज सबसे महत्वपूर्ण है?", bn: "কোন নথিটি সবচেয়ে গুরুত্বপূর্ণ?" },
             options: [
                 {en: "Aadhar Card", hi: "आधार कार्ड", bn: "আধার কার্ড"},
-                {en: "Movie Ticket", hi: "मूवी टिकट", bn: "मूवी टिकट"}
+                {en: "Movie Ticket", hi: "मूवी टिकट", bn: "মুভি টিকিট"}
             ],
             correctIndex: 0,
-            explanation: { en: "Aadhar Card is the primary identity proof needed for most services.", hi: "अधिकांश सेवाओं के लिए आधार कार्ड प्राथमिक पहचान प्रमाण है।", bn: "আধার কার্ড হল বেশিরভাগ পরিষেবার জন্য প্রয়োজনীয় প্রাথমিক পরিচয় প্রমাণ।" }
+            explanation: { en: "Aadhar Card is the primary identity proof needed for most services.", hi: "अधिकांश सेवाओं के लिए आधार कार्ड प्राथमिक पहचान प्रमाण है।", bn: "আধার কার্ড হল বেশিরভাগ পরিষেবার জন্য প্রয়োজনীয় প্রাথমিক পরিচয় প্রমাণ।" }
         },
         {
             id: "q3",
-            question: { en: "Do CSCs charge huge money?", hi: "क्या CSC बहुत पैसे लेते हैं?", bn: "CSCs क्या বিশাল টাকা চার্জ করে?" },
+            question: { en: "Do CSCs charge huge money?", hi: "क्या CSC बहुत पैसे लेते हैं?", bn: "CSC কি বিশাল টাকা চার্জ করে?" },
             options: [
-                {en: "Yes, very expensive", hi: "हाँ, बहुत महंगा", bn: "হ্যাঁ, बहुत ব্যয়বহুল"},
-                {en: "No, nominal government fee", hi: "नहीं, मामूली सरकारी शुल्क", bn: "ना, नाममात्र सरकारी शुल्क"}
+                {en: "Yes, very expensive", hi: "हाँ, बहुत महंगा", bn: "হ্যাঁ, অনেক ব্যয়বহুল"},
+                {en: "No, nominal government fee", hi: "नहीं, मामूली सरकारी शुल्क", bn: "না, নামমাত্র সরকারি ফি"}
             ],
             correctIndex: 1,
-            explanation: { en: "CSCs charge low, government-fixed fees for services.", hi: "CSC सेवाओं के लिए कम, सरकार द्वारा निर्धारित शुल्क लेते हैं।", bn: "CSC পরিষেবার জন্য কম, সরকার নির্ধারিত ফি নেয়।" }
+            explanation: { en: "CSCs charge low, government-fixed fees for services.", hi: "CSC सेवाओं के लिए कम, सरकार द्वारा निर्धारित शुल्क लेते हैं।", bn: "CSC পরিষেবার জন্য কম, সরকার নির্ধারিত ফি নেয়।" }
         }
     ]
   }
