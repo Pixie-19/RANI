@@ -148,11 +148,11 @@ export const LESSONS: Lesson[] = [
       description: { en: "Letters A, B, C, D, E", hi: "अक्षर A, B, C, D, E", bn: "অক্ষর A, B, C, D, E" },
       icon: "graduation-cap",
       steps: [
-          { id: "s_a", type: "info", title: {en:"A is for Apple", hi:"A से Apple", bn:"A তে Apple"}, description: {en:"Apple", hi:"सेब", bn:"আপেল"}, image: "https://loremflickr.com/400/300/apple" },
-          { id: "s_b", type: "info", title: {en:"B is for Ball", hi:"B से Ball", bn:"B তে Ball"}, description: {en:"Ball", hi:"गेंद", bn:"বল"}, image: "https://loremflickr.com/400/300/ball" },
-          { id: "s_c", type: "info", title: {en:"C is for Cat", hi:"C से Cat", bn:"C তে Cat"}, description: {en:"Cat", hi:"बिल्ली", bn:"বিড়াল"}, image: "https://loremflickr.com/400/300/cat" },
-          { id: "s_d", type: "info", title: {en:"D is for Dog", hi:"D से Dog", bn:"D তে Dog"}, description: {en:"Dog", hi:"कुत्ता", bn:"কুকুর"}, image: "https://loremflickr.com/400/300/dog" },
-          { id: "s_e", type: "info", title: {en:"E is for Elephant", hi:"E से Elephant", bn:"E তে Elephant"}, description: {en:"Elephant", hi:"हाथी", bn:"হাতি"}, image: "https://loremflickr.com/400/300/elephant" },
+          { id: "s_a", type: "info", title: {en:"A is for Apple", hi:"A से Apple", bn:"A তে Apple"}, description: {en:"Apple", hi:"सेब", bn:"আপেল"}, image: "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXBwbGV8ZW58MHx8MHx8fDA%3D" },
+          { id: "s_b", type: "info", title: {en:"B is for Ball", hi:"B से Ball", bn:"B তে Ball"}, description: {en:"Ball", hi:"गेंद", bn:"বল"}, image: "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFsbHxlbnwwfHwwfHx8MA%3D%3D" },
+          { id: "s_c", type: "info", title: {en:"C is for Cat", hi:"C से Cat", bn:"C তে Cat"}, description: {en:"Cat", hi:"बिल्ली", bn:"বিড়াল"}, image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2F0fGVufDB8fDB8fHww" },
+          { id: "s_d", type: "info", title: {en:"D is for Dog", hi:"D से Dog", bn:"D তে Dog"}, description: {en:"Dog", hi:"कुत्ता", bn:"কুকুর"}, image: "https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+          { id: "s_e", type: "info", title: {en:"E is for Elephant", hi:"E से Elephant", bn:"E তে Elephant"}, description: {en:"Elephant", hi:"हाथी", bn:"হাতি"}, image: "https://images.unsplash.com/photo-1581852017103-68ac65514cf7?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
           { id: "p_1", type: "language_practice", title: {en:"Practice", hi:"अभ्यास", bn:"অনুশীলন"}, description: {en:"Select 'Apple'", hi:"'Apple' चुनें", bn:"'Apple' নির্বাচন করুন"}, practice: { sourceText: {en:"Apple", hi:"सेब", bn:"আপেল"}, correctSentence: "Apple", wordBank: ["Apple", "Dog", "Cat"] } }
       ],
       quiz: [
