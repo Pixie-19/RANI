@@ -99,7 +99,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     login_btn: "শেখা শুরু করুন",
     admin_link: "অ্যাডমিন",
     my_progress: "আমার অগ্রগতি",
-    start_lesson: "पाठ শুরু করুন",
+    start_lesson: "পাঠ শুরু করুন",
     next: "পরবর্তী",
     back: "পেছনে",
     finish: "সমাপ্ত",
@@ -108,7 +108,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     score: "আপনার স্কোর",
     congrats: "অভিনন্দন!",
     retry: "আবার চেষ্টা করুন",
-    lesson_completed: "पाठ সম্পন্ন হয়েছে!",
+    lesson_completed: "পাঠ সম্পন্ন হয়েছে!",
     scan_qr: "QR কোড স্ক্যান করুন",
     enter_amount: "টাকার পরিমাণ লিখুন",
     pay: "পেমেন্ট করুন",
@@ -116,7 +116,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     success: "পেমেন্ট সফল হয়েছে!",
     check_balance: "ব্যালেন্স চেক করুন",
     find_center: "CSC কেন্দ্র খুঁজুন",
-    choose_language: "भाषा নির্বাচন করুন",
+    choose_language: "ভাষা নির্বাচন করুন",
     continue: "চালিয়ে যান",
     use_pin: "ডেমো পিন ব্যবহার করুন",
     incorrect_pin: "ভুল পিন। 1234 চেষ্টা করুন",
@@ -124,7 +124,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     wrong_ans: "ভুল",
     next_question: "পরবর্তী প্রশ্ন",
     finish_quiz: "কুইজ শেষ করুন",
-    nav_lessons: "पाठ",
+    nav_lessons: "পাঠ",
     nav_sim: "সিম",
     nav_more: "আরও",
     translate_sentence: "এই বাক্যটি অনুবাদ করুন",
@@ -355,14 +355,13 @@ export const LESSONS: Lesson[] = [
         id: "s1", type: "info",
         title: { en: "Tapping", hi: "टैप करना (छूना)", bn: "ট্যাপ করা" },
         description: { en: "Touch the screen lightly with one finger to open apps or select items. Think of it like a doorbell press.", hi: "ऐप्स खोलने या आइटम चुनने के लिए स्क्रीन को एक उंगली से हल्के से छुएं।", bn: "অ্যাপ খুলতে বা আইটেম নির্বাচন করতে এক আঙুল দিয়ে আলতোভাবে স্ক্রিন স্পর্শ করুন।" },
-        image: "https://picsum.photos/id/1/400/300"
+        image: "https://plus.unsplash.com/premium_vector-1731903231613-ef67793a1597?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
       {
         id: "s2", type: "info",
         title: { en: "Swiping", hi: "स्वाइप करना (सरकाना)", bn: "সোয়াইপ করা" },
         description: { en: "Slide your finger across the screen to see more content. This is like turning a page.", hi: "और देखने के लिए अपनी उंगली को स्क्रीन पर सरकाएं।", bn: "আরও দেখতে স্ক্রিনে আপনার আঙুল স্লাইড করুন। এটি পৃষ্ঠা উল্টানোর মতো।" },
-        image: "https://picsum.photos/id/2/400/300",
-        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+        image: "https://media.istockphoto.com/id/1159424740/vector/mobile-device-swiping-left-gesture.jpg?s=612x612&w=0&k=20&c=INX7El313YZXaiRdExGNY7BSnxX2vc6rBL-Kvzr3LO0=",
       }
     ],
     quiz: [
@@ -388,20 +387,19 @@ export const LESSONS: Lesson[] = [
         id: "s1", type: "info",
         title: { en: "What is UPI?", hi: "UPI क्या है?", bn: "UPI কী?" },
         description: { en: "UPI allows you to send money instantly from your bank account using your phone, 24/7.", hi: "UPI आपको अपने फोन का उपयोग करके अपने बैंक खाते से तुरंत, 24/7 पैसे भेजने की अनुमति देता है।", bn: "UPI আপনাকে আপনার ফোন ব্যবহার করে ব্যাঙ্ক অ্যাকাউন্ট থেকে অবিলম্বে, 24/7 টাকা পাঠাতে দেয়।" },
-        image: "https://picsum.photos/id/3/400/300",
-        video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+        image: "https://media.istockphoto.com/id/2182278847/vector/contactless-payment-online-digital-payment-through-card-and-upi-and-use-bar-codes.jpg?s=612x612&w=0&k=20&c=g1xjY3qJmDBp_VhRn6fXsQT-uggPk78TJqwN8kK8fTY=",
       },
       {
         id: "s2", type: "info",
-        title: { en: "UPI ID", hi: "UPI आईडी", bn: "UPI आईडी" },
+        title: { en: "UPI ID", hi: "UPI आईडी", bn: "UPI আইডি" },
         description: { en: "Your UPI ID is your digital address (e.g., rani@bank). You can share this to receive money without giving bank details.", hi: "आपकी UPI आईडी आपका डिजिटल पता है (जैसे, rani@bank)। आप बैंक विवरण दिए बिना पैसे प्राप्त करने के लिए इसे साझा कर सकते हैं।", bn: "আপনার UPI আইডি হল আপনার ডিজিটাল ঠিকানা (যেমন, rani@bank)। আপনি ব্যাঙ্কের বিবরণ না দিয়ে টাকা পেতে এটি শেয়ার করতে পারেন।" },
-        image: "https://picsum.photos/id/10/400/300"
+        image: "https://media.istockphoto.com/id/1306105191/photo/qr-code-payment-person-paying-with-mobile-phone.webp?a=1&b=1&s=612x612&w=0&k=20&c=WzOu30fXRutPINP_3P3G1BEg3yamagnMxyVoLTtjiGs="
       },
       {
         id: "s3", type: "info",
         title: { en: "Never Share PIN", hi: "पिन कभी साझा न करें", bn: "পিন কখনো শেয়ার করবেন না" },
         description: { en: "Your UPI PIN is a 4 or 6 digit secret code. Never tell it to anyone, not even bank officials.", hi: "आपका UPI पिन 4 या 6 अंकों का गुप्त कोड है। इसे किसी को न बताएं, बैंक अधिकारियों को भी नहीं।", bn: "আপনার UPI পিন একটি 4 বা 6 সংখ্যার গোপন কোড। এটি কাউকে বলবেন না, এমনকি ব্যাঙ্ক কর্মকর্তাদেরও না।" },
-        image: "https://picsum.photos/id/4/400/300"
+        image: "https://media.istockphoto.com/id/1463357164/vector/payment-by-bank-card-through-terminal-female-hand-enter-pin-code-shopping-and-cashless-pay.jpg?s=612x612&w=0&k=20&c=sD6k0_Mxo3SkuBFFDSoi6oRw74j0iXSZLTTaZ5RliSY="
       }
     ],
     quiz: [
@@ -447,7 +445,7 @@ export const LESSONS: Lesson[] = [
         id: "s1", type: "info",
         title: { en: "Scanning QR", hi: "QR स्कैन करना", bn: "QR স্ক্যান করা" },
         description: { en: "To pay at a shop, look for a square code (QR Code). Open scanner and point camera at it.", hi: "दुकान पर भुगतान करने के लिए, एक चौकोर कोड (QR कोड) देखें। स्कैनर खोलें और कैमरे को उसकी ओर करें।", bn: "দোকানে পেমেন্ট করতে, একটি স্কোয়ার কোড (QR কোড) খুঁজুন। স্ক্যানার খুলুন এবং ক্যামেরাটি সেদিকে ধরুন।" },
-        image: "https://picsum.photos/id/5/400/300"
+        image: "https://media.istockphoto.com/id/1358621997/vector/qr-code-smartphone-scanner-linear-icon-vector-illustration.jpg?s=612x612&w=0&k=20&c=ePiWZHIbseW9GwmM498rRKC_Dvk8IsKv41nqnC8iZhQ="
       },
       {
         id: "s2", type: "simulation", simulationType: "upi_pay",
@@ -588,7 +586,7 @@ export const LESSONS: Lesson[] = [
         id: "s1", type: "info",
         title: { en: "Common Service Centers (CSC)", hi: "कॉमन सर्विस सेंटर (CSC)", bn: "কমন সার্ভিস সেন্টার (CSC)" },
         description: { en: "CSCs are digital centers where you can apply for Aadhar, PAN card, Banking, and Insurance services.", hi: "CSC डिजिटल केंद्र हैं जहां आप आधार, पैन कार्ड, बैंकिंग और बीमा सेवाओं के लिए आवेदन कर सकते हैं।", bn: "CSC হল ডিজিটাল কেন্দ্র যেখানে আপনি আধার, প্যান কার্ড, ব্যাঙ্কিং এবং বীমা পরিষেবার জন্য আবেদন করতে পারেন।" },
-        image: "https://picsum.photos/id/6/400/300"
+        image: "https://media.istockphoto.com/id/1476654498/photo/young-woman-working-on-a-call-center-in-the-office.jpg?s=612x612&w=0&k=20&c=IUpPebWpfimjiaCHE2ujBfSybL1xouaDQXsx6nejiPw="
       },
       {
         id: "s2", type: "simulation", simulationType: "maps",
@@ -599,7 +597,7 @@ export const LESSONS: Lesson[] = [
         id: "s3", type: "info",
         title: { en: "Documents Needed", hi: "आवश्यक दस्तावेज", bn: "প্রয়োজনীয় নথি" },
         description: { en: "Always carry your Aadhar Card, Bank Passbook, and Mobile Phone when visiting a CSC.", hi: "CSC जाते समय हमेशा अपना आधार कार्ड, बैंक पासबुक और मोबाइल फोन साथ रखें।", bn: "CSC পরিদর্শন করার সময় সর্বদা আপনার আধার কার্ড, ব্যাঙ্ক পাসবুক এবং মোবাইল ফোন সাথে রাখুন।" },
-        image: "https://picsum.photos/id/20/400/300"
+        image: "https://media.istockphoto.com/id/1134734018/photo/aadhar-card-and-pan-card-which-are-issued-by-government-of-india-as-an-identity-card-with.jpg?s=612x612&w=0&k=20&c=7aJFcFILPXQpAhl-VyA3SuicMM8YhfjcqkpyjfgbDJE="
       }
     ],
     quiz: [
