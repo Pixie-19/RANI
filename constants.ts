@@ -166,11 +166,11 @@ export const LESSONS: Lesson[] = [
       description: { en: "Letters F, G, H, I, J", hi: "अक्षर F, G, H, I, J", bn: "অক্ষর F, G, H, I, J" },
       icon: "graduation-cap",
       steps: [
-          { id: "s_f", type: "info", title: {en:"F is for Fish", hi:"F से Fish", bn:"F তে Fish"}, description: {en:"Fish", hi:"मछली", bn:"মাছ"}, image: "https://loremflickr.com/400/300/fish" },
-          { id: "s_g", type: "info", title: {en:"G is for Goat", hi:"G से Goat", bn:"G তে Goat"}, description: {en:"Goat", hi:"बकरी", bn:"ছাগল"}, image: "https://loremflickr.com/400/300/goat" },
-          { id: "s_h", type: "info", title: {en:"H is for Hat", hi:"H से Hat", bn:"H তে Hat"}, description: {en:"Hat", hi:"टोपी", bn:"টুপি"}, image: "https://loremflickr.com/400/300/hat" },
-          { id: "s_i", type: "info", title: {en:"I is for Ice Cream", hi:"I से Ice Cream", bn:"I তে Ice Cream"}, description: {en:"Ice Cream", hi:"आइसक्रीम", bn:"আইসক্রিম"}, image: "https://loremflickr.com/400/300/icecream" },
-          { id: "s_j", type: "info", title: {en:"J is for Jug", hi:"J से Jug", bn:"J তে Jug"}, description: {en:"Jug", hi:"जग", bn:"জগ"}, image: "https://loremflickr.com/400/300/jug" },
+          { id: "s_f", type: "info", title: {en:"F is for Fish", hi:"F से Fish", bn:"F তে Fish"}, description: {en:"Fish", hi:"मछली", bn:"মাছ"}, image: "https://images.unsplash.com/photo-1578507065211-1c4e99a5fd24?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmlzaHxlbnwwfHwwfHx8MA%3D%3D" },
+          { id: "s_g", type: "info", title: {en:"G is for Goat", hi:"G से Goat", bn:"G তে Goat"}, description: {en:"Goat", hi:"बकरी", bn:"ছাগল"}, image: "https://plus.unsplash.com/premium_photo-1664302765793-b268ea04fd93?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGdvYXR8ZW58MHx8MHx8fDA%3D" },
+          { id: "s_h", type: "info", title: {en:"H is for Hat", hi:"H से Hat", bn:"H তে Hat"}, description: {en:"Hat", hi:"टोपी", bn:"টুপি"}, image: "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aGF0fGVufDB8fDB8fHww" },
+          { id: "s_i", type: "info", title: {en:"I is for Ice Cream", hi:"I से Ice Cream", bn:"I তে Ice Cream"}, description: {en:"Ice Cream", hi:"आइसक्रीम", bn:"আইসক্রিম"}, image: "https://plus.unsplash.com/premium_photo-1661288452010-951ca57991fc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aWNlY3JlYW18ZW58MHx8MHx8fDA%3D" },
+          { id: "s_j", type: "info", title: {en:"J is for Jug", hi:"J से Jug", bn:"J তে Jug"}, description: {en:"Jug", hi:"जग", bn:"জগ"}, image: "https://images.unsplash.com/photo-1635155711436-19b9adab2aab?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8anVnfGVufDB8fDB8fHww" },
       ],
       quiz: [
           { id: "q1", question: {en:"F is for...", hi:"F से...", bn:"F তে..."}, options: [{en:"Fish", hi:"Fish", bn:"Fish"}, {en:"Apple", hi:"Apple", bn:"Apple"}], correctIndex: 0, explanation: {en:"F is for Fish.", hi:"F से Fish होता है।", bn:"F তে Fish হয়।"} }
@@ -183,11 +183,11 @@ export const LESSONS: Lesson[] = [
       description: { en: "Letters K, L, M, N, O", hi: "अक्षर K, L, M, N, O", bn: "অক্ষর K, L, M, N, O" },
       icon: "graduation-cap",
       steps: [
-          { id: "s_k", type: "info", title: {en:"K is for Kite", hi:"K से Kite", bn:"K তে Kite"}, description: {en:"Kite", hi:"पतंग", bn:"ঘুড়ি"}, image: "https://loremflickr.com/400/300/kite" },
-          { id: "s_l", type: "info", title: {en:"L is for Lion", hi:"L से Lion", bn:"L তে Lion"}, description: {en:"Lion", hi:"शेर", bn:"সিংহ"}, image: "https://loremflickr.com/400/300/lion" },
-          { id: "s_m", type: "info", title: {en:"M is for Mango", hi:"M से Mango", bn:"M তে Mango"}, description: {en:"Mango", hi:"आम", bn:"আম"}, image: "https://loremflickr.com/400/300/mango" },
-          { id: "s_n", type: "info", title: {en:"N is for Nest", hi:"N से Nest", bn:"N তে Nest"}, description: {en:"Nest", hi:"घोंसला", bn:"পাখির বাসা"}, image: "https://loremflickr.com/400/300/nest" },
-          { id: "s_o", type: "info", title: {en:"O is for Orange", hi:"O से Orange", bn:"O তে Orange"}, description: {en:"Orange", hi:"संतरा", bn:"কমলা"}, image: "https://loremflickr.com/400/300/orange" },
+          { id: "s_k", type: "info", title: {en:"K is for Kite", hi:"K से Kite", bn:"K তে Kite"}, description: {en:"Kite", hi:"पतंग", bn:"ঘুড়ি"}, image: "https://images.unsplash.com/flagged/photo-1583603275310-33d386c7298a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8a2l0ZXxlbnwwfHwwfHx8MA%3D%3D" },
+          { id: "s_l", type: "info", title: {en:"L is for Lion", hi:"L से Lion", bn:"L তে Lion"}, description: {en:"Lion", hi:"शेर", bn:"সিংহ"}, image: "https://plus.unsplash.com/premium_photo-1664304310991-b43610000fc2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGlvbnxlbnwwfHwwfHx8MA%3D%3D" },
+          { id: "s_m", type: "info", title: {en:"M is for Mango", hi:"M से Mango", bn:"M তে Mango"}, description: {en:"Mango", hi:"आम", bn:"আম"}, image: "https://images.unsplash.com/photo-1553279768-865429fa0078?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWFuZ298ZW58MHx8MHx8fDA%3D" },
+          { id: "s_n", type: "info", title: {en:"N is for Nest", hi:"N से Nest", bn:"N তে Nest"}, description: {en:"Nest", hi:"घोंसला", bn:"পাখির বাসা"}, image: "https://images.unsplash.com/photo-1504980927740-d1cc11dccf63?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmVzdHxlbnwwfHwwfHx8MA%3D%3D" },
+          { id: "s_o", type: "info", title: {en:"O is for Orange", hi:"O से Orange", bn:"O তে Orange"}, description: {en:"Orange", hi:"संतरा", bn:"কমলা"}, image: "https://images.unsplash.com/photo-1643996317182-5b01f9725953?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG9yYW5nZSUyMGZydWl0fGVufDB8fDB8fHww" },
       ],
       quiz: [
           { id: "q1", question: {en:"M is for...", hi:"M से...", bn:"M তে..."}, options: [{en:"Mango", hi:"Mango", bn:"Mango"}, {en:"Lion", hi:"Lion", bn:"Lion"}], correctIndex: 0, explanation: {en:"M is for Mango.", hi:"M से Mango होता है।", bn:"M তে Mango হয়।"} }
@@ -200,11 +200,11 @@ export const LESSONS: Lesson[] = [
       description: { en: "Letters P, Q, R, S, T", hi: "अक्षर P, Q, R, S, T", bn: "অক্ষর P, Q, R, S, T" },
       icon: "graduation-cap",
       steps: [
-          { id: "s_p", type: "info", title: {en:"P is for Pen", hi:"P से Pen", bn:"P তে Pen"}, description: {en:"Pen", hi:"कलम", bn:"কলম"}, image: "https://loremflickr.com/400/300/pen" },
-          { id: "s_q", type: "info", title: {en:"Q is for Queen", hi:"Q से Queen", bn:"Q তে Queen"}, description: {en:"Queen", hi:"रानी", bn:"রানী"}, image: "https://loremflickr.com/400/300/queen" },
-          { id: "s_r", type: "info", title: {en:"R is for Rose", hi:"R से Rose", bn:"R তে Rose"}, description: {en:"Rose", hi:"गुलाब", bn:"গোলাপ"}, image: "https://loremflickr.com/400/300/rose" },
-          { id: "s_s", type: "info", title: {en:"S is for Sun", hi:"S से Sun", bn:"S তে Sun"}, description: {en:"Sun", hi:"सूरज", bn:"সূর্য"}, image: "https://loremflickr.com/400/300/sun" },
-          { id: "s_t", type: "info", title: {en:"T is for Tree", hi:"T से Tree", bn:"T তে Tree"}, description: {en:"Tree", hi:"पेड़", bn:"গাছ"}, image: "https://loremflickr.com/400/300/tree" },
+          { id: "s_p", type: "info", title: {en:"P is for Pen", hi:"P से Pen", bn:"P তে Pen"}, description: {en:"Pen", hi:"कलम", bn:"কলম"}, image: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGVufGVufDB8fDB8fHww" },
+          { id: "s_q", type: "info", title: {en:"Q is for Queen", hi:"Q से Queen", bn:"Q তে Queen"}, description: {en:"Queen", hi:"रानी", bn:"রানী"}, image: "https://plus.unsplash.com/premium_photo-1695717373523-c274993cb13f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cXVlZW58ZW58MHx8MHx8fDA%3D" },
+          { id: "s_r", type: "info", title: {en:"R is for Rose", hi:"R से Rose", bn:"R তে Rose"}, description: {en:"Rose", hi:"गुलाब", bn:"গোলাপ"}, image: "https://images.unsplash.com/photo-1519058497187-7167f17c6daf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHJvc2V8ZW58MHx8MHx8fDI%3D" },
+          { id: "s_s", type: "info", title: {en:"S is for Sun", hi:"S से Sun", bn:"S তে Sun"}, description: {en:"Sun", hi:"सूरज", bn:"সূর্য"}, image: "https://images.unsplash.com/photo-1575881875475-31023242e3f9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3VufGVufDB8fDB8fHwy" },
+          { id: "s_t", type: "info", title: {en:"T is for Tree", hi:"T से Tree", bn:"T তে Tree"}, description: {en:"Tree", hi:"पेड़", bn:"গাছ"}, image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJlZXxlbnwwfHwwfHx8Mg%3D%3D" },
       ],
       quiz: [
           { id: "q1", question: {en:"S is for...", hi:"S से...", bn:"S তে..."}, options: [{en:"Sun", hi:"Sun", bn:"Sun"}, {en:"Tree", hi:"Tree", bn:"Tree"}], correctIndex: 0, explanation: {en:"S is for Sun.", hi:"S से Sun होता है।", bn:"S তে Sun হয়।"} }
@@ -217,12 +217,12 @@ export const LESSONS: Lesson[] = [
       description: { en: "Letters U, V, W, X, Y, Z", hi: "अक्षर U, V, W, X, Y, Z", bn: "অক্ষর U, V, W, X, Y, Z" },
       icon: "graduation-cap",
       steps: [
-          { id: "s_u", type: "info", title: {en:"U is for Umbrella", hi:"U से Umbrella", bn:"U তে Umbrella"}, description: {en:"Umbrella", hi:"छाता", bn:"ছাতা"}, image: "https://loremflickr.com/400/300/umbrella" },
-          { id: "s_v", type: "info", title: {en:"V is for Van", hi:"V से Van", bn:"V তে Van"}, description: {en:"Van", hi:"वैन", bn:"ভ্যান"}, image: "https://loremflickr.com/400/300/van" },
-          { id: "s_w", type: "info", title: {en:"W is for Watch", hi:"W से Watch", bn:"W তে Watch"}, description: {en:"Watch", hi:"घड़ी", bn:"ঘড়ি"}, image: "https://loremflickr.com/400/300/watch" },
-          { id: "s_x", type: "info", title: {en:"X is for X-Ray", hi:"X से X-Ray", bn:"X তে X-Ray"}, description: {en:"X-Ray", hi:"एक्स-रे", bn:"এক্স-রে"}, image: "https://loremflickr.com/400/300/xray" },
-          { id: "s_y", type: "info", title: {en:"Y is for Yak", hi:"Y से Yak", bn:"Y তে Yak"}, description: {en:"Yak", hi:"याक", bn:"ইয়াক"}, image: "https://loremflickr.com/400/300/yak" },
-          { id: "s_z", type: "info", title: {en:"Z is for Zebra", hi:"Z से Zebra", bn:"Z তে Zebra"}, description: {en:"Zebra", hi:"ज़ेबरा", bn:"জেব্রা"}, image: "https://loremflickr.com/400/300/zebra" },
+          { id: "s_u", type: "info", title: {en:"U is for Umbrella", hi:"U से Umbrella", bn:"U তে Umbrella"}, description: {en:"Umbrella", hi:"छाता", bn:"ছাতা"}, image: "https://images.unsplash.com/photo-1580051235428-f88ae8a2d53b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dW1icmVsbGF8ZW58MHx8MHx8fDI%3D" },
+          { id: "s_v", type: "info", title: {en:"V is for Van", hi:"V से Van", bn:"V তে Van"}, description: {en:"Van", hi:"वैन", bn:"ভ্যান"}, image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dmFufGVufDB8fDB8fHwy" },
+          { id: "s_w", type: "info", title: {en:"W is for Watch", hi:"W से Watch", bn:"W তে Watch"}, description: {en:"Watch", hi:"घड़ी", bn:"ঘড়ি"}, image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2F0Y2h8ZW58MHx8MHx8fDI%3D" },
+          { id: "s_x", type: "info", title: {en:"X is for X-Ray", hi:"X से X-Ray", bn:"X তে X-Ray"}, description: {en:"X-Ray", hi:"एक्स-रे", bn:"এক্স-রে"}, image: "https://images.unsplash.com/photo-1516069677018-378515003435?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8eHJheXxlbnwwfHwwfHx8Mg%3D%3D" },
+          { id: "s_y", type: "info", title: {en:"Y is for Yak", hi:"Y से Yak", bn:"Y তে Yak"}, description: {en:"Yak", hi:"याक", bn:"ইয়াক"}, image: "https://images.unsplash.com/photo-1599137258505-8871bd07cbbb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eWFrfGVufDB8fDB8fHwy" },
+          { id: "s_z", type: "info", title: {en:"Z is for Zebra", hi:"Z से Zebra", bn:"Z তে Zebra"}, description: {en:"Zebra", hi:"ज़ेबरा", bn:"জেব্রা"}, image: "https://images.unsplash.com/photo-1526095179574-86e545346ae6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8emVicmF8ZW58MHx8MHx8fDI%3D" },
       ],
       quiz: [
           { id: "q1", question: {en:"Z is for...", hi:"Z से...", bn:"Z তে..."}, options: [{en:"Zebra", hi:"Zebra", bn:"Zebra"}, {en:"Yak", hi:"Yak", bn:"Yak"}], correctIndex: 0, explanation: {en:"Z is for Zebra.", hi:"Z से Zebra होता है।", bn:"Z তে Zebra হয়।"} }
