@@ -408,7 +408,7 @@ export const LESSONS: Lesson[] = [
             question: { en: "Who should you share your UPI PIN with?", hi: "आपको अपना UPI पिन किसके साथ साझा करना चाहिए?", bn: "আপনার UPI পিন কার সাথে শেয়ার করা উচিত?" },
             options: [
               { en: "Family", hi: "परिवार", bn: "পরিবার" },
-              { en: "No One", hi: "किसी से नहीं", bn: "किसी से नहीं" }
+              { en: "No One", hi: "किसी से नहीं", bn: "কারোর সাথে নয়" }
             ],
             correctIndex: 1,
             explanation: { en: "Your UPI PIN is secret. Sharing it allows others to take your money.", hi: "आपका UPI पिन गुप्त है। इसे साझा करने से दूसरे आपके पैसे ले सकते हैं।", bn: "আপনার UPI পিন গোপন। এটি শেয়ার করলে অন্যরা আপনার টাকা নিতে পারে।" }
